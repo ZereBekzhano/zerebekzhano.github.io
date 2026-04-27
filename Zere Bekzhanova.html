@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zere Bekzhanova</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #060d14;
+      --surface: #0d1b2a;
+      --card: #0f1e2f;
+      --card-hover: #132234;
+      --accent: #4ade80;
+      --accent-dim: rgba(74,222,128,0.12);
+      --accent-glow: rgba(74,222,128,0.25);
+      --blue: #60a5fa;
+      --blue-dim: rgba(96,165,250,0.12);
+      --amber: #fbbf24;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: rgba(74,222,128,0.15);
+      --border-subtle: rgba(255,255,255,0.06);
+      --display: 'Cormorant Garamond', Georgia, serif;
+      --body: 'Sora', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-weight: 400;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(6,13,20,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: all 0.3s;
+    }
+    .nav-brand {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 0 3rem;
+      overflow: hidden;
+    }
+    #particles-canvas {
+      position: absolute; inset: 0;
+      pointer-events: none; z-index: 0;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 40px; height: 1px;
+      background: var(--accent);
+    }
+    h1.hero-name {
+      font-family: var(--display);
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+    h1.hero-name span { color: var(--accent); }
+    .hero-tagline {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.45rem 1rem;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      font-family: var(--body);
+      letter-spacing: 0.03em;
+      transition: all 0.2s;
+    }
+    .badge-green { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--border); }
+    .badge-blue  { background: var(--blue-dim);  color: var(--blue);  border: 1px solid rgba(96,165,250,0.2); }
+    .badge-amber { background: rgba(251,191,36,0.1); color: var(--amber); border: 1px solid rgba(251,191,36,0.2); }
+    .badge:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      background: var(--accent);
+      color: #060d14;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.25s;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary:hover { background: #22c55e; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(74,222,128,0.3); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .hero-scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em;
+      text-transform: uppercase; animation: float 2.5s ease-in-out infinite;
+    }
+    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); }
+    @keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-8px)} }
+
+    /* ─── STATS BAR ─── */
+    #stats {
+      background: var(--surface);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 3rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .stat-item { text-align: center; }
+    .stat-number {
+      font-family: var(--display);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .stat-divider { border: none; border-right: 1px solid var(--border-subtle); }
+
+    /* ─── SECTION COMMONS ─── */
+    section { padding: 6rem 3rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1; max-width: 60px; height: 1px;
+      background: var(--accent); opacity: 0.5;
+    }
+    h2.section-title {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 3rem;
+    }
+
+    /* fade-in animation — desktop only */
+    @media (min-width: 769px) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .reveal.visible { opacity: 1; transform: translateY(0); }
+    }
+    /* mobile: always visible, no animation */
+    @media (max-width: 768px) {
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        transition-delay: 0s !important;
+      }
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--bg); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 1.25rem;
+      font-size: 0.97rem;
+    }
+    .about-text p strong { color: var(--text); font-weight: 600; }
+    .about-highlights { display: flex; flex-direction: column; gap: 1rem; }
+    .highlight-card {
+      background: var(--card);
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      transition: all 0.25s;
+    }
+    .highlight-card:hover { border-left-color: var(--accent); background: var(--card-hover); transform: translateX(4px); }
+    .highlight-title {
+      font-weight: 600; font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+    .highlight-desc { font-size: 0.82rem; color: var(--muted); }
+
+    /* ─── PROJECTS ─── */
+    #projects { background: var(--surface); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: left;
+    }
+    .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); background: var(--card-hover); border-color: var(--border); }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-card.featured {
+      grid-column: span 2;
+      background: linear-gradient(135deg, #0f1e2f 0%, #132234 100%);
+      border-color: var(--border);
+    }
+    .project-card.featured::before { background: var(--accent); }
+    .project-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      font-family: var(--mono);
+    }
+    .tag-green { background: var(--accent-dim); color: var(--accent); }
+    .tag-blue  { background: var(--blue-dim);  color: var(--blue); }
+    .tag-amber { background: rgba(251,191,36,0.1); color: var(--amber); }
+    .tag-purple{ background: rgba(167,139,250,0.1); color: #a78bfa; }
+    .project-title {
+      font-family: var(--display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .project-card.featured .project-title { font-size: 1.6rem; }
+    .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.25rem; }
+    .project-tools { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tool-chip {
+      padding: 0.2rem 0.6rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+    .project-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .project-meta {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin-top: 1.25rem; padding-top: 1.25rem;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.75rem; color: var(--muted);
+    }
+    .project-meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+
+    /* ─── PUBLICATIONS ─── */
+    #publications { background: var(--bg); }
+    .pub-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .pub-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      background: var(--card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 1.75rem 2rem;
+      transition: all 0.25s;
+    }
+    .pub-card:hover { border-color: var(--border); background: var(--card-hover); transform: translateX(6px); }
+    .pub-year {
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      opacity: 0.6;
+      min-width: 70px;
+      line-height: 1;
+      padding-top: 0.2rem;
+    }
+    .pub-journal {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .pub-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+    .pub-authors { font-size: 0.8rem; color: var(--muted); }
+    .pub-authors strong { color: var(--text); }
+
+    /* ─── SKILLS ─── */
+    #skills { background: var(--surface); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .skill-category {
+      background: var(--card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 1.75rem;
+      transition: all 0.25s;
+    }
+    .skill-category:hover { border-color: var(--border); }
+    .skill-cat-title {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .skill-cat-title::before {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 2px;
+      background: var(--accent);
+    }
+    .skill-item { margin-bottom: 1rem; }
+    .skill-name {
+      display: flex; justify-content: space-between;
+      font-size: 0.82rem; color: var(--text);
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+    .skill-level { color: var(--muted); font-size: 0.75rem; font-weight: 400; }
+    .skill-bar { height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+    .skill-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(to right, var(--accent), #22d3ee);
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+    /* mobile: show bars immediately at their real width via inline style */
+    @media (max-width: 768px) {
+      .skill-fill { width: var(--bar-w, 0%) !important; transition: none !important; }
+    }
+    .cert-strip { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem; }
+    .cert-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.82rem; color: var(--muted);
+    }
+    .cert-icon { font-size: 1rem; }
+    .cert-name { font-weight: 500; color: var(--text); }
+    .cert-org { color: var(--muted); font-size: 0.75rem; }
+    .lang-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+    .lang-item {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.82rem;
+    }
+    .lang-name { color: var(--text); font-weight: 500; }
+    .lang-dots { display: flex; gap: 3px; }
+    .lang-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      transition: background 0.3s;
+    }
+    .lang-dot.filled { background: var(--accent); }
+
+    /* ─── EXPERIENCE ─── */
+    #experience { background: var(--bg); }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 8px; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -2rem;
+      top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+    .timeline-period {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-role {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+    .timeline-org {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .org-badge {
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.68rem;
+      font-family: var(--mono);
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+    }
+    .timeline-bullets { list-style: none; }
+    .timeline-bullets li {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .timeline-bullets li::before {
+      content: '→';
+      position: absolute; left: 0;
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+    .timeline-bullets li strong { color: var(--text); }
+
+    /* ─── EDUCATION ─── */
+    #education { background: var(--surface); }
+    .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .edu-card {
+      background: var(--card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .edu-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--accent), transparent);
+    }
+    .edu-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+    .edu-degree {
+      font-size: 0.7rem;
+      color: var(--accent);
+      font-family: var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .edu-school {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      line-height: 1.2;
+    }
+    .edu-country { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; }
+    .edu-details { display: flex; flex-direction: column; gap: 0.35rem; }
+    .edu-detail { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
+    .edu-detail::before { content: '◆'; color: var(--accent); font-size: 0.5rem; }
+    .edu-years {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      font-family: var(--display);
+      font-size: 0.85rem;
+      color: var(--muted);
+      opacity: 0.5;
+    }
+
+    /* ─── ACHIEVEMENTS ─── */
+    #achievements { background: var(--bg); }
+    .achievements-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .achievement-card {
+      flex: 1; min-width: 280px;
+      background: var(--card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 1.75rem;
+      display: flex; align-items: flex-start; gap: 1.25rem;
+      transition: all 0.25s;
+    }
+    .achievement-card:hover { border-color: var(--border); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+    .achievement-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      background: var(--accent-dim);
+      width: 54px; height: 54px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px;
+    }
+    .achievement-title { font-weight: 600; color: var(--text); margin-bottom: 0.35rem; font-size: 0.95rem; }
+    .achievement-desc { font-size: 0.81rem; color: var(--muted); line-height: 1.65; }
+
+    /* ─── CONTACT / FOOTER ─── */
+    #contact {
+      background: var(--surface);
+      text-align: center;
+      padding: 5rem 3rem;
+    }
+    .contact-heading {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .contact-sub { color: var(--muted); margin-bottom: 3rem; font-size: 1rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.25s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
+    .contact-icon { font-size: 1.1rem; }
+    footer {
+      background: var(--bg);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border-subtle);
+    }
+    footer span { color: var(--accent); }
+
+    /* ─── BEYOND GRID (needs class for responsive) ─── */
+    .beyond-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .beyond-card {
+      background: var(--card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.25s;
+    }
+    .beyond-card:hover {
+      border-color: rgba(74,222,128,0.3);
+      transform: translateY(-4px);
+    }
+    .beyond-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+    .beyond-title { font-weight: 600; color: var(--text); font-size: 0.9rem; margin-bottom: 0.35rem; }
+    .beyond-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+    .beyond-closing { color: var(--muted); font-size: 0.9rem; max-width: 620px; line-height: 1.85; }
+
+    /* ─── HAMBURGER ─── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ─── MOBILE NAV DRAWER ─── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(6,13,20,0.97);
+      backdrop-filter: blur(20px);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--accent); }
+
+    /* ─── RESPONSIVE — TABLET ─── */
+    @media (max-width: 1024px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-card.featured { grid-column: span 2; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .beyond-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    }
+
+    /* ─── RESPONSIVE — MOBILE ─── */
+    @media (max-width: 768px) {
+      /* Nav */
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      /* Sections */
+      section { padding: 3.5rem 1.25rem; }
+      #stats { padding: 2rem 1.25rem; }
+      #hero { padding: 0 1.25rem; min-height: 100svh; }
+
+      /* Hero */
+      .hero-content { padding-top: 5rem; padding-bottom: 4rem; }
+      .hero-eyebrow { font-size: 0.68rem; }
+      .hero-tagline { font-size: 0.95rem; }
+      .hero-badges { gap: 0.5rem; }
+      .badge { font-size: 0.72rem; padding: 0.35rem 0.75rem; }
+      .hero-cta { flex-direction: column; gap: 0.75rem; }
+      .btn-primary, .btn-secondary { justify-content: center; text-align: center; }
+      .hero-scroll-hint { display: none; }
+
+      /* Stats */
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+      .stat-number { font-size: 2.5rem; }
+      .stat-label { font-size: 0.72rem; }
+      .stat-divider { border-right: none; }
+
+      /* Section headings */
+      h2.section-title { font-size: 1.8rem; margin-bottom: 2rem; }
+
+      /* About */
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+      /* Projects */
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: span 1; }
+      .project-card.featured .project-title { font-size: 1.25rem; }
+
+      /* Skills */
+      .skills-grid { grid-template-columns: 1fr; }
+
+      /* Education */
+      .edu-grid { grid-template-columns: 1fr; }
+      .edu-years { position: static; font-size: 0.8rem; margin-bottom: 0.5rem; opacity: 0.6; }
+
+      /* Timeline */
+      .timeline { padding-left: 1.25rem; }
+      .timeline-item { padding-left: 1.25rem; }
+      .timeline-item::before { left: -1.25rem; }
+      .timeline-org { flex-wrap: wrap; }
+      .org-badge { margin-top: 0.25rem; }
+
+      /* Beyond */
+      .beyond-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .beyond-card { padding: 1.25rem; }
+      .beyond-icon { font-size: 1.5rem; }
+
+      /* Achievements */
+      .achievements-row { flex-direction: column; }
+
+      /* Contact */
+      .contact-links { flex-direction: column; align-items: center; }
+      .contact-link { width: 100%; max-width: 360px; justify-content: center; }
+      .contact-heading { font-size: 2rem; }
+
+      /* Publications */
+      .pub-card { grid-template-columns: 1fr; gap: 0.5rem; }
+      .pub-year { font-size: 1.4rem; }
+    }
+
+    /* ─── RESPONSIVE — SMALL MOBILE ─── */
+    @media (max-width: 420px) {
+      .beyond-grid { grid-template-columns: 1fr; }
+      .hero-badges { flex-direction: column; align-items: flex-start; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="#publications" onclick="closeMenu()">Research</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#experience" onclick="closeMenu()">Experience</a>
+  <a href="#beyond" onclick="closeMenu()">Beyond Work</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-brand">ZB.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Research</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#beyond">Beyond Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="particles-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Building Decarbonisation · LCA · Climate Resilience</div>
+    <h1 class="hero-name">Zere <span>Bekzhanova</span></h1>
+    <p class="hero-tagline">
+      Civil & building engineer quantifying the path from existing buildings to net zero —
+      through rigorous embodied carbon assessment, energy modelling, and systems thinking.
+    </p>
+    <div class="hero-badges">
+      <span class="badge badge-green"><span class="badge-dot"></span>LEED Green Associate</span>
+      <span class="badge badge-blue"><span class="badge-dot"></span>Published · ETH Zurich SBE25</span>
+      <span class="badge badge-amber"><span class="badge-dot"></span>Climate Hackathon Winner 2024</span>
+      <span class="badge badge-green"><span class="badge-dot"></span>Construction LCA Specialist</span>
+      <span class="badge badge-blue"><span class="badge-dot"></span>3× Full Scholarship</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View My Work →</a>
+      <a href="mailto:zere.bekzhanova@alumni.utoronto.ca" class="btn-secondary">✉ Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<div id="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number" data-target="3">3</div>
+      <div class="stat-label">Full Scholarships Awarded</div>
+    </div>
+    <div class="stat-item stat-divider">
+      <div class="stat-number" data-target="5">5</div>
+      <div class="stat-label">Publications &amp; Conference Papers</div>
+    </div>
+    <div class="stat-item stat-divider">
+      <div class="stat-number" data-target="4">4</div>
+      <div class="stat-label">Languages Spoken</div>
+    </div>
+    <div class="stat-item stat-divider">
+      <div class="stat-number" data-target="175" data-suffix="K+">175K+</div>
+      <div class="stat-label">Schneider Go Green Competitors</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label">About</div>
+    <h2 class="section-title">Where data meets<br>decarbonisation strategy.</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          I'm a civil and building engineer from Kazakhstan with a graduate research specialisation in
+          <strong>material use in building renovation and embodied GHG assessment</strong>. My thesis work, published through the University of Toronto, quantifies material intensity and GHG emissions across refurbishment scenarios — combining Revit-based material take-off workflows, LCA methodology, and data analysis in Python.
+        </p>
+        <p>
+          From Nazarbayev University to Politecnico di Milano to the University of Toronto's
+          <strong>Centre for the Sustainable Built Environment (CSBE)</strong>, my career has been shaped
+          by the belief that climate action demands both rigorous quantification and scalable strategy.
+          I've published in Q1 journals during undergraduate, co-authored a conference paper at
+          <strong>ETH Zurich SBE25</strong>, and led the team that won the <strong>Climate Impacts
+          Hackathon 2024</strong>.
+        </p>
+        <p>
+          What distinguishes me is breadth matched with depth: I work across engineering, data analysis,
+          and sustainability assessment — and bring multilingual communication skills across four languages.
+          I thrive in multidisciplinary environments where analytical rigour and systems thinking are both essential.
+        </p>
+      </div>
+      <div class="about-highlights reveal" style="transition-delay:0.15s">
+        <div class="highlight-card">
+          <div class="highlight-title">🏗 Graduate Research · CSBE, University of Toronto</div>
+          <div class="highlight-desc">Thesis: <em>Material Use in Renovation, Retrofit, and Refurbishment of Existing Buildings</em> — supervised by Prof. Shoshanna Saxe. Fully funded (merit scholarship + research assistantship).</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-title">🌍 International Research Trajectory</div>
+          <div class="highlight-desc">Kazakhstan → Italy (Politecnico di Milano, full scholarship, English-medium programme) → Canada (UofT, fully funded) — 3 top institutions, 3 continents, 3 academic cultures.</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-title">📄 ETH Zurich SBE25 Co-Author</div>
+          <div class="highlight-desc">Published at the Sustainable Built Environment Conference 2025 Zurich — 400 participants from 41 countries and 178 institutions. Conference theme: Systems Thinking in the Built Environment.</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-title">🏆 European Finalist · Schneider Go Green 2021</div>
+          <div class="highlight-desc">Smart home energy management and sustainability project. Competed against 175,000+ participants globally; advanced to European finalist round.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">Applied work across<br>buildings, cities &amp; systems.</h2>
+    <div class="projects-grid">
+
+      <!-- Featured -->
+      <div class="project-card featured reveal">
+        <span class="project-icon">🏛</span>
+        <span class="project-tag tag-green">⭐ Graduate Thesis · Flagship</span>
+        <div class="project-title">Material Use in Renovation, Retrofit and Refurbishment of Existing Buildings</div>
+        <div class="project-desc">
+          MAS thesis research at the University of Toronto CSBE, supervised by Prof. Shoshanna Saxe.
+          Conducted literature reviews to identify research gaps in building material use and sustainability.
+          Developed a 3D multi-phase building model in Autodesk Revit, using material take-off tools to
+          calculate material volumes, convert to masses, and assess cradle-to-gate GHG emissions across
+          multiple building intervention scenarios. Performed data analysis in Python. Presented at the
+          2024 CSBE Embodied GHG Symposium and at ETH Zurich SBE25 (2025). Extended GHG analysis
+          currently under peer review for publication.
+        </div>
+        <div class="project-tools">
+          <span class="tool-chip">Revit</span>
+          <span class="tool-chip">Python</span>
+          <span class="tool-chip">Material Take-off</span>
+          <span class="tool-chip">GHG Assessment</span>
+          <span class="tool-chip">LCA</span>
+          <span class="tool-chip">OpenLCA</span>
+        </div>
+        <div class="project-meta">
+          <span class="dot"></span>
+          University of Toronto CSBE &nbsp;·&nbsp; Sep 2023 – Oct 2025 &nbsp;·&nbsp; Fully funded
+        </div>
+      </div>
+
+      <!-- Hackathon -->
+      <div class="project-card reveal" style="transition-delay:0.1s">
+        <span class="project-icon">🏆</span>
+        <span class="project-tag tag-amber">Winner · Climate Hackathon 2024</span>
+        <div class="project-title">Toronto Urban Heat Vulnerability &amp; Cooling Centre Optimisation</div>
+        <div class="project-desc">
+          Led a data-driven Python and QGIS pipeline to identify 8 optimal cooling centre locations for
+          2.8M Toronto residents. Downscaled CanESM5 climate projections (SSP2-4.5 &amp; SSP5-8.5, 2070–2100)
+          using Quantile Delta Mapping; calculated Humidex heat hazard days; overlaid population
+          vulnerability indices (income, age, housing status, education) to produce ward-level risk maps.
+        </div>
+        <div class="project-tools">
+          <span class="tool-chip">Python</span>
+          <span class="tool-chip">QGIS</span>
+          <span class="tool-chip">CanESM5</span>
+          <span class="tool-chip">QDM</span>
+          <span class="tool-chip">GIS Analysis</span>
+        </div>
+        <div class="project-meta">
+          <span class="dot"></span>
+          CIV1321 · University of Toronto · 2024
+        </div>
+      </div>
+
+      <!-- ETH -->
+      <div class="project-card reveal" style="transition-delay:0.15s">
+        <span class="project-icon">📄</span>
+        <span class="project-tag tag-blue">Peer-Reviewed · ETH Zurich</span>
+        <div class="project-title">Material Use in Building Renovation &amp; Retrofit — SBE25</div>
+        <div class="project-desc">
+          Co-authored conference paper published at the Sustainable Built Environment Conference 2025 Zurich
+          (ETH Zurich, Jun 2025). Research quantified material flows in renovation, retrofit and refurbishment
+          of existing buildings — a critical gap in whole-life carbon accounting. Full paper published in IOP
+          Conference Series – Earth and Environmental Sciences.
+        </div>
+        <div class="project-tools">
+          <span class="tool-chip">LCA</span>
+          <span class="tool-chip">Material Flows</span>
+          <span class="tool-chip">Building Stock</span>
+          <span class="tool-chip">OpenLCA</span>
+        </div>
+        <div class="project-meta">
+          <span class="dot"></span>
+          ETH Zurich SBE25 · Jun 2025 · 41 countries represented
+        </div>
+      </div>
+
+      <!-- Netherlands -->
+      <div class="project-card reveal" style="transition-delay:0.2s">
+        <span class="project-icon">⚡</span>
+        <span class="project-tag tag-purple">Energy Systems Policy</span>
+        <div class="project-title">Net-Zero Pathway Modelling — The Netherlands 2040</div>
+        <div class="project-desc">
+          Developed a national decarbonisation scenario for the Netherlands targeting net-zero by 2040
+          across electricity generation, buildings, and agriculture — representing 59% of national emissions.
+          Modelled grid transition (offshore wind 21.5 GW + 65 GW solar + nuclear), building retrofit
+          programme (8.8M buildings), and agricultural emissions abatement (−53%). Quantified costs and
+          social enabling factors.
+        </div>
+        <div class="project-tools">
+          <span class="tool-chip">Energy Modelling</span>
+          <span class="tool-chip">GHG Scenario</span>
+          <span class="tool-chip">Excel</span>
+          <span class="tool-chip">Policy Analysis</span>
+        </div>
+        <div class="project-meta">
+          <span class="dot"></span>
+          CIV1399 · University of Toronto · Dec 2023
+        </div>
+      </div>
+
+      <!-- Diet LCA -->
+      <div class="project-card reveal" style="transition-delay:0.25s">
+        <span class="project-icon">🌱</span>
+        <span class="project-tag tag-green">Comparative LCA</span>
+        <div class="project-title">Cradle-to-Grave LCA of Canadian, Mediterranean &amp; EAT-Lancet Diets</div>
+        <div class="project-desc">
+          Conducted full cradle-to-grave life cycle assessment of three standard diets using OpenLCA
+          (Ecoinvent v3.10), IPCC 2013, AWARE water scarcity model, and the dataFIELD database. Quantified
+          GHG and freshwater stress impacts, performed multi-parameter sensitivity analysis, and modelled
+          national-scale reductions from dietary shifts (~1 MtCO₂e/day potential).
+        </div>
+        <div class="project-tools">
+          <span class="tool-chip">OpenLCA</span>
+          <span class="tool-chip">Ecoinvent</span>
+          <span class="tool-chip">IPCC 2013</span>
+          <span class="tool-chip">AWARE</span>
+          <span class="tool-chip">dataFIELD</span>
+        </div>
+        <div class="project-meta">
+          <span class="dot"></span>
+          CIV1307 · University of Toronto · Jun 2024
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-inner">
+    <div class="section-label">Research</div>
+    <h2 class="section-title">Published work &amp;<br>academic contributions.</h2>
+    <div class="pub-list">
+
+      <div class="pub-card reveal">
+        <div class="pub-year">2025</div>
+        <div>
+          <span class="pub-journal">SBE Conference Series · ETH Zurich / IOP Conf. Series: Earth &amp; Env. Sci.</span>
+          <div class="pub-title">Material Use in Renovation, Retrofit and Refurbishment of Existing Buildings</div>
+          <div class="pub-authors"><strong>Bekzhanova Z.</strong>, Zuluaga S., Ruiz-Valero L., Saxe S. — Presented at SBE25 Zurich, Jun 2025 (400 participants, 41 countries)</div>
+        </div>
+      </div>
+
+      <div class="pub-card reveal" style="transition-delay:0.1s">
+        <div class="pub-year">2022</div>
+        <div>
+          <span class="pub-journal">Buildings · MDPI (Q1 — Construction &amp; Building Technology)</span>
+          <div class="pub-title">Structural Performance of Recycled Concrete Aggregates in Construction Applications</div>
+          <div class="pub-authors"><strong>Bekzhanova Z.</strong> et al. — Nazarbayev University · Undergraduate Research</div>
+        </div>
+      </div>
+
+      <div class="pub-card reveal" style="transition-delay:0.2s">
+        <div class="pub-year">2021</div>
+        <div>
+          <span class="pub-journal">Nanomaterials · MDPI (Q1 — Materials Science)</span>
+          <div class="pub-title">Nano-Enhanced Cementitious Composites for Sustainable Construction Applications</div>
+          <div class="pub-authors"><strong>Bekzhanova Z.</strong> et al. — Nazarbayev University · Undergraduate Research</div>
+        </div>
+      </div>
+
+      <div class="pub-card reveal" style="transition-delay:0.3s">
+        <div class="pub-year">2025</div>
+        <div>
+          <span class="pub-journal">Symposium Presentation · University of Toronto CSBE</span>
+          <div class="pub-title">Embodied GHG Emissions in Building Refurbishment Scenarios</div>
+          <div class="pub-authors"><strong>Bekzhanova Z.</strong> — 2024 CSBE Embodied GHG Symposium · Supervisor: Prof. Shoshanna Saxe</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">Expertise</div>
+    <h2 class="section-title">Technical skills &amp;<br>domain knowledge.</h2>
+    <div class="skills-grid">
+
+      <div class="skill-category reveal">
+        <div class="skill-cat-title">Decarbonisation &amp; Carbon</div>
+        <div class="skill-item">
+          <div class="skill-name"><span>Embodied Carbon Assessment</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="75" style="--bar-w:75%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>Cradle-to-Gate GHG Quantification</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="75" style="--bar-w:75%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>LCA Methodology (ISO 14044)</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="72" style="--bar-w:72%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>GHG Scenario Modelling</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="72" style="--bar-w:72%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>EN 15804 / EPD Frameworks</span><span class="skill-level">Familiar</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="45" style="--bar-w:45%"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-category reveal" style="transition-delay:0.1s">
+        <div class="skill-cat-title">Software &amp; BIM Tools</div>
+        <div class="skill-item">
+          <div class="skill-name"><span>Autodesk Revit (Material Take-off)</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="75" style="--bar-w:75%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>IES VE · EnergyPlus · ClimateStudio</span><span class="skill-level">Familiar (coursework)</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="48" style="--bar-w:48%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>AutoCAD</span><span class="skill-level">Familiar</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="52" style="--bar-w:52%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>Primavera P6</span><span class="skill-level">Familiar</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="42" style="--bar-w:42%"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-category reveal" style="transition-delay:0.2s">
+        <div class="skill-cat-title">LCA Software</div>
+        <div class="skill-item">
+          <div class="skill-name"><span>One Click LCA</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="70" style="--bar-w:70%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>OpenLCA + Ecoinvent</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="68" style="--bar-w:68%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>AWARE Water Scarcity</span><span class="skill-level">Familiar</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="52" style="--bar-w:52%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>dataFIELD Database</span><span class="skill-level">Familiar</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="50" style="--bar-w:50%"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-category reveal" style="transition-delay:0.1s">
+        <div class="skill-cat-title">Data &amp; Programming</div>
+        <div class="skill-item">
+          <div class="skill-name"><span>Python (data analysis)</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="72" style="--bar-w:72%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>QGIS / Spatial Analysis</span><span class="skill-level">Proficient</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="72" style="--bar-w:72%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>Excel (Advanced)</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="85" style="--bar-w:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>Scientific Writing</span><span class="skill-level">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="85" style="--bar-w:85%"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-category reveal" style="transition-delay:0.2s">
+        <div class="skill-cat-title">Certifications &amp; Standards</div>
+        <div class="cert-strip">
+          <div class="cert-item">
+            <span class="cert-icon">🏅</span>
+            <div><div class="cert-name">LEED Green Associate</div><div class="cert-org">USGBC · Active since Feb 2026</div></div>
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon">🏅</span>
+            <div><div class="cert-name">Construction LCA Specialist</div><div class="cert-org">One Click LCA Bootcamp · Active since 2024</div></div>
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon">📚</span>
+            <div><div class="cert-name">Circular Economy for Built Environment</div><div class="cert-org">TU Delft · edX</div></div>
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon">📚</span>
+            <div><div class="cert-name">Solar Cells</div><div class="cert-org">Technical University of Denmark · edX</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-category reveal" style="transition-delay:0.3s">
+        <div class="skill-cat-title">Languages</div>
+        <div class="lang-grid">
+          <div class="lang-item">
+            <span class="lang-name">English (C1+, IELTS 8.5)</span>
+            <div class="lang-dots">
+              <div class="lang-dot filled"></div><div class="lang-dot filled"></div>
+              <div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div>
+            </div>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Russian (Native)</span>
+            <div class="lang-dots">
+              <div class="lang-dot filled"></div><div class="lang-dot filled"></div>
+              <div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div>
+            </div>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Kazakh (Native)</span>
+            <div class="lang-dots">
+              <div class="lang-dot filled"></div><div class="lang-dot filled"></div>
+              <div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div>
+            </div>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Italian (Pre-Intermediate)</span>
+            <div class="lang-dots">
+              <div class="lang-dot filled"></div><div class="lang-dot filled"></div>
+              <div class="lang-dot"></div><div class="lang-dot"></div><div class="lang-dot"></div>
+            </div>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Turkish (Beginner)</span>
+            <div class="lang-dots">
+              <div class="lang-dot filled"></div><div class="lang-dot"></div>
+              <div class="lang-dot"></div><div class="lang-dot"></div><div class="lang-dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Where I've worked<br>&amp; what I've delivered.</h2>
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-period">Sep 2023 – Oct 2025</div>
+        <div class="timeline-role">Graduate Research Assistant — Material Use &amp; GHG Assessment</div>
+        <div class="timeline-org">University of Toronto · Centre for the Sustainable Built Environment <span class="org-badge">Toronto, Canada</span></div>
+        <ul class="timeline-bullets">
+          <li>Conducted <strong>literature reviews</strong> under Prof. Shoshanna Saxe to identify research gaps in building sustainability, material intensity, and refurbishment</li>
+          <li>Built a <strong>3D multi-phase building model in Autodesk Revit</strong>, using material take-off tools to calculate material volumes, masses, and cradle-to-gate GHG emissions across intervention scenarios</li>
+          <li>Performed <strong>data analysis in Python</strong> to support GHG quantification and comparative scenario assessment</li>
+          <li>Extended GHG analysis developed into a manuscript <strong>currently under peer review</strong></li>
+          <li>Presented research at the <strong>2024 CSBE Embodied GHG Symposium</strong> (poster: material intensity and GHG emissions) and at <strong>ETH Zurich SBE25 Conference</strong> (Jun 2025)</li>
+          <li><strong>Won Climate Impacts Hackathon 2024</strong>: led Python/QGIS climate data pipeline to identify 8 optimal cooling centre locations for Toronto's most heat-vulnerable wards</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal" style="transition-delay:0.1s">
+        <div class="timeline-period">Feb 2026 – Present</div>
+        <div class="timeline-role">System / Business Analyst</div>
+        <div class="timeline-org">ZAAM Construction · Almaty, Kazakhstan <span class="org-badge">Current</span></div>
+        <ul class="timeline-bullets">
+          <li>Applying <strong>engineering systems thinking</strong> to design KPI tracking and reporting frameworks for construction project operations</li>
+          <li>Structuring internal processes and documentation from scratch, contributing to operational consistency across construction project delivery</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal" style="transition-delay:0.15s">
+        <div class="timeline-period">Sep 2019 – Jan 2022</div>
+        <div class="timeline-role">Undergraduate Research Assistant — Low-Carbon Construction Materials</div>
+        <div class="timeline-org">Nazarbayev University · School of Engineering <span class="org-badge">Nur-Sultan, Kazakhstan</span></div>
+        <ul class="timeline-bullets">
+          <li>Co-authored <strong>two peer-reviewed publications</strong> in Q1 journals: recycled concrete aggregates (<em>Buildings</em>, MDPI, 2022) and nano-enhanced cementitious composites (<em>Nanomaterials</em>, MDPI, 2021)</li>
+          <li>Investigated <strong>sugarcane bagasse-based concrete</strong> as a zero-waste, low-carbon alternative — analysed building physics and environmental performance characteristics</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal" style="transition-delay:0.2s">
+        <div class="timeline-period">Aug 2021 – Feb 2022</div>
+        <div class="timeline-role">Engineering Intern — Building Services</div>
+        <div class="timeline-org">Schneider Electric · Almaty, Kazakhstan <span class="org-badge">Fortune 500</span></div>
+        <ul class="timeline-bullets">
+          <li>Designed <strong>10 electrical cabinet systems</strong> for building services projects from specification through to delivery</li>
+          <li><strong>European Finalist, Schneider Go Green 2021</strong> — developed a smart home energy management and sustainability project; one of the top teams from 175,000+ global participants</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal" style="transition-delay:0.23s">
+        <div class="timeline-period">Feb 2021 – Apr 2021</div>
+        <div class="timeline-role">Engineering Intern — BI International Graduate</div>
+        <div class="timeline-org">BI Group · Almaty, Kazakhstan</div>
+        <ul class="timeline-bullets">
+          <li>Preparation of <strong>cost estimates</strong> for construction works as part of the graduate trainee programme</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal" style="transition-delay:0.25s">
+        <div class="timeline-period">May – Jun 2019</div>
+        <div class="timeline-role">Engineering Intern — Structural Analysis</div>
+        <div class="timeline-org">KAZGOR Design Academy · Almaty, Kazakhstan</div>
+        <ul class="timeline-bullets">
+          <li>Performed structural load resistance analysis on a 750 m² five-floor building, verifying code compliance under SNIP standards — foundational grounding in building physics and structural behaviour</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-label">Education</div>
+    <h2 class="section-title">Three institutions.<br>Three scholarships. Three countries.</h2>
+    <div class="edu-grid">
+
+      <div class="edu-card reveal">
+        <div class="edu-years">2023–25</div>
+        <div class="edu-degree">MAS · Civil Engineering</div>
+        <div class="edu-school">University of Toronto</div>
+        <div class="edu-country">🇨🇦 Canada</div>
+        <div class="edu-details">
+          <div class="edu-detail">GPA 3.68 / 4.00</div>
+          <div class="edu-detail">Fully funded — merit scholarship + research assistantship</div>
+          <div class="edu-detail">Thesis: Material Use in Renovation, Retrofit, and Refurbishment of Existing Buildings</div>
+          <div class="edu-detail">Supervisor: Prof. Shoshanna Saxe · CSBE</div>
+        </div>
+      </div>
+
+      <div class="edu-card reveal" style="transition-delay:0.1s">
+        <div class="edu-years">2022–23</div>
+        <div class="edu-degree">MS · Building &amp; Architectural Engineering</div>
+        <div class="edu-school">Politecnico di Milano</div>
+        <div class="edu-country">🇮🇹 Italy</div>
+        <div class="edu-details">
+          <div class="edu-detail">Score 27.38 / 30</div>
+          <div class="edu-detail">Full scholarship (tuition, accommodation, monthly stipend)</div>
+          <div class="edu-detail">English-medium programme</div>
+          <div class="edu-detail">Transferred to UofT on merit</div>
+        </div>
+      </div>
+
+      <div class="edu-card reveal" style="transition-delay:0.2s">
+        <div class="edu-years">2017–21</div>
+        <div class="edu-degree">BEng · Civil Engineering</div>
+        <div class="edu-school">Nazarbayev University</div>
+        <div class="edu-country">🇰🇿 Kazakhstan</div>
+        <div class="edu-details">
+          <div class="edu-detail">GPA 3.38 / 4.00</div>
+          <div class="edu-detail">Full scholarship (competitive government grant)</div>
+          <div class="edu-detail">2× peer-reviewed publications during undergraduate</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-inner">
+    <div class="section-label">Recognition</div>
+    <h2 class="section-title">Competitive achievements<br>&amp; industry recognition.</h2>
+    <div class="achievements-row">
+      <div class="achievement-card reveal">
+        <div class="achievement-icon">🏆</div>
+        <div>
+          <div class="achievement-title">Winner — Climate Impacts Hackathon 2024</div>
+          <div class="achievement-desc">Led Python + QGIS data pipeline to identify optimal urban cooling centre locations for Toronto, applying climate downscaling, heat hazard modelling, and vulnerability assessment. First place.</div>
+        </div>
+      </div>
+      <div class="achievement-card reveal" style="transition-delay:0.1s">
+        <div class="achievement-icon">🌍</div>
+        <div>
+          <div class="achievement-title">European Finalist — Schneider Go Green 2021</div>
+          <div class="achievement-desc">Advanced to European finalist stage in a global sustainability competition with 175,000+ participants — for a smart home energy management and sustainability project.</div>
+        </div>
+      </div>
+      <div class="achievement-card reveal" style="transition-delay:0.2s">
+        <div class="achievement-icon">🌉</div>
+        <div>
+          <div class="achievement-title">Finalist — BRICO Nordic Steel Bridge Competition 2020</div>
+          <div class="achievement-desc">Designed a sustainable steel bridge as part of an international student engineering competition, applying structural analysis and sustainable design principles.</div>
+        </div>
+      </div>
+      <div class="achievement-card reveal" style="transition-delay:0.3s">
+        <div class="achievement-icon">🌐</div>
+        <div>
+          <div class="achievement-title">IET Present Around the World — EMEA Regional Finalist 2019</div>
+          <div class="achievement-desc">Winner of the Local Final in Astana, Kazakhstan; advanced to the EMEA Regional Final in Athens, Greece (Institution of Engineering and Technology).</div>
+        </div>
+      </div>
+      <div class="achievement-card reveal" style="transition-delay:0.4s">
+        <div class="achievement-icon">🏗</div>
+        <div>
+          <div class="achievement-title">Participant — Sustainable Buildings Challenge 2024</div>
+          <div class="achievement-desc">Better Building Boot Camp, Sustainable Buildings Canada (May 2024). Collaborative applied challenge on building performance and sustainability strategy.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEYOND WORK -->
+<section id="beyond" style="background:var(--bg)">
+  <div class="section-inner">
+    <div class="section-label">Beyond Work</div>
+    <h2 class="section-title">A bit about<br>who I actually am.</h2>
+    <div class="beyond-grid reveal">
+
+      <div class="beyond-card">
+        <div class="beyond-icon">🎾</div>
+        <div class="beyond-title">Tennis</div>
+        <div class="beyond-desc">My favourite way to reset. Competitive by nature — on and off the court.</div>
+      </div>
+
+      <div class="beyond-card">
+        <div class="beyond-icon">🏔</div>
+        <div class="beyond-title">Mountains & Hiking</div>
+        <div class="beyond-desc">Grew up near the Tian Shan range in Kazakhstan. Mountains feel like home.</div>
+      </div>
+
+      <div class="beyond-card">
+        <div class="beyond-icon">🎹</div>
+        <div class="beyond-title">Piano</div>
+        <div class="beyond-desc">Been playing since childhood. Mostly classical — it keeps me grounded.</div>
+      </div>
+
+      <div class="beyond-card">
+        <div class="beyond-icon">✏️</div>
+        <div class="beyond-title">Drawing</div>
+        <div class="beyond-desc">Sketching by hand — architecture, portraits, whatever catches my eye.</div>
+      </div>
+
+      <div class="beyond-card">
+        <div class="beyond-icon">☕</div>
+        <div class="beyond-title">Coffee</div>
+        <div class="beyond-desc">Serious about it. Italy was a revelation — still chasing that espresso standard everywhere else.</div>
+      </div>
+
+      <div class="beyond-card">
+        <div class="beyond-icon">🏛</div>
+        <div class="beyond-title">Architecture & Design</div>
+        <div class="beyond-desc">Hard not to care about it after Polimi. I notice buildings everywhere I go — how they age, how people use them.</div>
+      </div>
+
+      <div class="beyond-card">
+        <div class="beyond-icon">🤖</div>
+        <div class="beyond-title">AI & 3D Printing</div>
+        <div class="beyond-desc">Genuinely curious how these change construction and design workflows. Following it closely.</div>
+      </div>
+
+      <div class="beyond-card">
+        <div class="beyond-icon">📈</div>
+        <div class="beyond-title">Markets & Innovation</div>
+        <div class="beyond-desc">Learning about financial markets and how capital flows into green tech. The business side of sustainability matters.</div>
+      </div>
+
+    </div>
+
+    <p class="beyond-closing reveal" style="transition-delay:0.15s">
+      I've lived in three countries and moved across continents twice for school — so adapting quickly, building new circles, and finding comfort in unfamiliar places feels pretty natural to me by now.
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label" style="justify-content:center">Contact</div>
+    <div class="contact-heading">Let's build a<br><span style="color:var(--accent)">net-zero future</span> together.</div>
+    <p class="contact-sub">Open to roles in building decarbonisation, LCA, embodied carbon, building energy modelling, building physics, and sustainability consulting.</p>
+    <div class="contact-links">
+      <a href="mailto:zere.bekzhanova@alumni.utoronto.ca" class="contact-link">
+        <span class="contact-icon">✉</span> zere.bekzhanova@alumni.utoronto.ca
+      </a>
+      <a href="https://www.linkedin.com/in/zere-bekzhanova/" target="_blank" class="contact-link">
+        <span class="contact-icon">💼</span> linkedin.com/in/zere-bekzhanova
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Zere Bekzhanova</span> · Building Decarbonisation & LCA Specialist</p>
+</footer>
+
+<script>
+  // ─── HAMBURGER MENU ───
+  function toggleMenu() {
+    const menu = document.getElementById('mobileNav');
+    const btn = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    btn.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('mobileNav').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Close on escape key
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+  // ─── PARTICLES (reduced on mobile) ───
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  const isMobile = window.innerWidth < 768;
+  const PARTICLE_COUNT = isMobile ? 30 : 80;
+  const CONNECTION_DIST = isMobile ? 80 : 120;
+  let particles = [];
+
+  const resize = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  };
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 1.5 + 0.3;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.speedY = (Math.random() - 0.5) * 0.3;
+      this.opacity = Math.random() * 0.4 + 0.1;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.x < 0 || this.x > canvas.width ||
+          this.y < 0 || this.y > canvas.height) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(74,222,128,${this.opacity})`;
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+  const drawConnections = () => {
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECTION_DIST) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(74,222,128,${0.08 * (1 - dist / CONNECTION_DIST)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+  };
+
+  const animate = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    if (!isMobile) drawConnections();
+    requestAnimationFrame(animate);
+  };
+  animate();
+
+  // ─── REVEAL: show everything visible in viewport on load + on scroll ───
+  // Use threshold 0 so ANY pixel entering triggers it.
+  // rootMargin fires slightly before element reaches bottom of screen.
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Safety net: after 1.8s force ALL reveals visible regardless
+  // (handles edge cases where observer never fires on some mobile browsers)
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+      el.classList.add('visible');
+    });
+  }, 1800);
+
+  // ─── COUNTERS ───
+  const animateCounter = (el) => {
+    const target = +el.dataset.target;
+    const suffix = el.dataset.suffix || '';
+    const duration = 1600;
+    const start = performance.now();
+    const update = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  };
+
+  // Threshold 0 + rootMargin to catch counters as soon as they appear
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target);
+        counterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -20px 0px' });
+
+  document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+    counterObserver.observe(el);
+  });
+
+  // Safety net for counters too
+  setTimeout(() => {
+    document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+      if (el.textContent === '0') animateCounter(el);
+    });
+  }, 1000);
+
+  // ─── SKILL BARS ───
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        skillObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -20px 0px' });
+
+  document.querySelectorAll('.skill-category').forEach(el => skillObserver.observe(el));
+
+  // Safety net for skill bars
+  setTimeout(() => {
+    document.querySelectorAll('.skill-fill').forEach(bar => {
+      if (!bar.style.width) bar.style.width = bar.dataset.width + '%';
+    });
+  }, 2000);
+
+  // ─── NAV SHRINK ON SCROLL ───
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    const isMob = window.innerWidth < 768;
+    const pad = window.scrollY > 60
+      ? (isMob ? '0.6rem 1.25rem' : '0.75rem 3rem')
+      : (isMob ? '1rem 1.25rem'  : '1.25rem 3rem');
+    nav.style.padding = pad;
+  }, { passive: true });
+
+</script>
+</body>
+</html>
