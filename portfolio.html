@@ -3,11 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zere Bekzhanova</title>
+  <title>Zere Bekzhanova | Sustainability &amp; Building Engineer, Computational Designer</title>
+  <meta name="description" content="Zere Bekzhanova, sustainability and building engineer and computational designer. Embodied carbon, life cycle assessment and building performance, with Rhino, Grasshopper, Python and BIM. MASc, University of Toronto. Open to roles in the Netherlands and Northern Italy.">
+  <meta name="author" content="Zere Bekzhanova">
+  <meta name="theme-color" content="#060d14">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Zere Bekzhanova | Sustainability &amp; Building Engineer, Computational Designer">
+  <meta property="og:description" content="Embodied carbon, LCA and building performance, with parametric design in Rhino and Grasshopper and Python automation.">
+  <meta property="og:url" content="https://zerebekzhano.github.io/portfolio.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>hh
+  <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #060d14;
@@ -230,7 +237,7 @@
       margin-bottom: 3rem;
     }
 
-    /* fade-in animation — desktop only */
+    /* fade-in animation - desktop only */
     @media (min-width: 769px) {
       .reveal {
         opacity: 0;
@@ -432,25 +439,28 @@
       border-radius: 2px;
       background: var(--accent);
     }
-    .skill-item { margin-bottom: 1rem; }
-    .skill-name {
-      display: flex; justify-content: space-between;
-      font-size: 0.82rem; color: var(--text);
-      margin-bottom: 0.4rem;
-      font-weight: 500;
+    /* skills: named levels, no bars */
+    .skill-item {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 0.75rem; margin-bottom: 0.7rem;
     }
-    .skill-level { color: var(--muted); font-size: 0.75rem; font-weight: 400; }
-    .skill-bar { height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
-    .skill-fill {
-      height: 100%;
-      border-radius: 2px;
-      background: linear-gradient(to right, var(--accent), #22d3ee);
-      width: 0;
-      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    .skill-name { font-size: 0.84rem; color: var(--text); font-weight: 400; line-height: 1.45; }
+    .skill-level {
+      font-family: var(--mono);
+      font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.2rem 0.5rem; border-radius: 4px;
+      white-space: nowrap; flex-shrink: 0;
+      background: var(--accent-dim); color: var(--accent);
+      border: 1px solid var(--border);
     }
-    /* mobile: show bars immediately at their real width via inline style */
-    @media (max-width: 768px) {
-      .skill-fill { width: var(--bar-w, 0%) !important; transition: none !important; }
+    .skill-level.lvl-basic {
+      background: rgba(255,255,255,0.04); color: var(--muted); border-color: var(--border-subtle);
+    }
+    .skill-level.lvl-academic {
+      background: var(--blue-dim); color: var(--blue); border-color: rgba(96,165,250,0.2);
+    }
+    .skill-level.lvl-advanced {
+      background: rgba(251,191,36,0.1); color: var(--amber); border-color: rgba(251,191,36,0.2);
     }
     .cert-strip { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem; }
     .cert-item {
@@ -722,7 +732,7 @@
     }
     .mobile-nav a:hover { color: var(--accent); }
 
-    /* ─── RESPONSIVE — TABLET ─── */
+    /* ─── RESPONSIVE - TABLET ─── */
     @media (max-width: 1024px) {
       .projects-grid { grid-template-columns: repeat(2, 1fr); }
       .project-card.featured { grid-column: span 2; }
@@ -731,7 +741,7 @@
       .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     }
 
-    /* ─── RESPONSIVE — MOBILE ─── */
+    /* ─── RESPONSIVE - MOBILE ─── */
     @media (max-width: 768px) {
       /* Nav */
       nav { padding: 1rem 1.25rem; }
@@ -802,68 +812,164 @@
       .pub-year { font-size: 1.4rem; }
     }
 
-    /* ─── RESPONSIVE — SMALL MOBILE ─── */
+    /* ─── RESPONSIVE - SMALL MOBILE ─── */
     @media (max-width: 420px) {
       .beyond-grid { grid-template-columns: 1fr; }
       .hero-badges { flex-direction: column; align-items: flex-start; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
     }
+  
+
+    /* ─── DUAL-IDENTITY ROLE LINE ─── */
+    .hero-role {
+      font-family: var(--display);
+      font-size: clamp(1.15rem, 2.6vw, 1.75rem);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1.4rem;
+      line-height: 1.3;
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.65rem;
+    }
+    .hero-role .role-sep { color: var(--accent); font-weight: 400; }
+    /* stack the two identities rather than stranding the separator */
+    @media (max-width: 768px) {
+      .hero-role { display: block; }
+      .hero-role .role-sep { display: none; }
+      .hero-role > span { display: block; }
+    }
+
+    /* ─── EDUCATION: year sat absolutely and collided with longer degree
+           titles, so it now runs in normal flow as a chip ─── */
+    .edu-years {
+      position: static;
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      opacity: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 0.25rem 0.55rem;
+      margin-bottom: 1rem;
+    }
+    /* the country line is gone, so the school name supplies the gap itself */
+    .edu-school { margin-bottom: 0.9rem; }
+    /* keep the diamond on the first line of a wrapped detail */
+    .edu-detail { align-items: flex-start; line-height: 1.55; }
+    .edu-detail::before { margin-top: 0.5em; flex-shrink: 0; }
+
+    /* ─── PUBLICATION LINKS ─── */
+    .pub-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.18s ease, border-color 0.18s ease;
+    }
+    .pub-title a:hover, .pub-title a:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
+    .pub-links { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.6rem; }
+    .pub-link-chip {
+      font-family: var(--mono);
+      font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.3rem 0.6rem; border-radius: 4px; text-decoration: none;
+      background: var(--accent-dim); color: var(--accent);
+      border: 1px solid var(--border);
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .pub-link-chip::after { content: ' \2197'; opacity: 0.65; }
+    .pub-link-chip:hover, .pub-link-chip:focus-visible { background: rgba(74,222,128,0.18); color: #86efac; }
+
+    /* ─── NAV: 8 items need more room, so hand over to the menu earlier ─── */
+    @media (max-width: 1000px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+    @media (min-width: 1001px) and (max-width: 1180px) {
+      .nav-links { gap: 1.35rem; }
+      .nav-links a { font-size: 0.76rem; }
+      nav { padding: 1.25rem 2rem; }
+    }
+
+    /* ─── FOCUS VISIBILITY ─── */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    /* ─── HEADING RESETS (semantic tags kept visually identical) ─── */
+    .project-title, .pub-title, .skill-cat-title, .timeline-role,
+    .edu-degree, .achievement-title, .beyond-title, .highlight-title { font-size: inherit; }
+
+    /* ─── REDUCED MOTION ─── */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+    }
   </style>
 </head>
 <body>
-<a href="./" style="position:fixed;top:18px;left:18px;z-index:9999;display:inline-flex;align-items:center;gap:6px;font-family:'Jost',-apple-system,Helvetica,Arial,sans-serif;font-size:13px;letter-spacing:0.02em;text-decoration:none;color:#0c1a12;background:#7fcb98;padding:8px 14px;border-radius:20px;box-shadow:0 2px 10px rgba(0,0,0,0.18);transition:all .18s ease;" onmouseover="this.style.background='#93d6a6'" onmouseout="this.style.background='#7fcb98'">← Home</a>
 
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
+  <a href="./">Home</a>
   <a href="#about" onclick="closeMenu()">About</a>
   <a href="#projects" onclick="closeMenu()">Projects</a>
   <a href="#publications" onclick="closeMenu()">Research</a>
   <a href="#skills" onclick="closeMenu()">Skills</a>
   <a href="#experience" onclick="closeMenu()">Experience</a>
+  <a href="#education" onclick="closeMenu()">Education</a>
   <a href="#beyond" onclick="closeMenu()">Beyond Work</a>
   <a href="#contact" onclick="closeMenu()">Contact</a>
 </div>
 
 <!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-brand">ZB.</a>
+<nav aria-label="Main">
+  <a href="./" class="nav-brand" aria-label="Back to home page">ZB.</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#publications">Research</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
     <li><a href="#beyond">Beyond Work</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
+<main>
 <!-- HERO -->
 <section id="hero">
-  <canvas id="particles-canvas"></canvas>
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
   <div class="hero-content">
-    <div class="hero-eyebrow">Building Decarbonisation · LCA · Climate Resilience</div>
+    <p class="hero-eyebrow">Embodied Carbon &middot; LCA &middot; Parametric Design</p>
     <h1 class="hero-name">Zere <span>Bekzhanova</span></h1>
+    <p class="hero-role"><span>Sustainability &amp; Building Engineer</span><span class="role-sep" aria-hidden="true">/</span><span>Computational Designer</span></p>
     <p class="hero-tagline">
-      Civil & building engineer quantifying the path from existing buildings to net zero —
-      through rigorous embodied carbon assessment, energy modelling, and systems thinking.
+      I work on the carbon side of buildings, embodied carbon, life cycle assessment and building
+      performance, and on the computational side that makes those numbers repeatable: Rhino,
+      Grasshopper, Python automation and BIM data.
     </p>
     <div class="hero-badges">
-      <span class="badge badge-green"><span class="badge-dot"></span>LEED Green Associate</span>
-      <span class="badge badge-blue"><span class="badge-dot"></span>Published · ETH Zurich SBE25</span>
-      <span class="badge badge-amber"><span class="badge-dot"></span>Climate Hackathon Winner 2024</span>
-      <span class="badge badge-green"><span class="badge-dot"></span>Construction LCA Specialist</span>
-      <span class="badge badge-blue"><span class="badge-dot"></span>3× Full Scholarship</span>
+      <span class="badge badge-green"><span class="badge-dot" aria-hidden="true"></span>LEED Green Associate</span>
+      <span class="badge badge-green"><span class="badge-dot" aria-hidden="true"></span>Construction LCA Specialist</span>
+      <span class="badge badge-blue"><span class="badge-dot" aria-hidden="true"></span>First author, Energy and Buildings 2026</span>
+      <span class="badge badge-amber"><span class="badge-dot" aria-hidden="true"></span>Climate Impacts Hackathon Winner 2024</span>
+      <span class="badge badge-blue"><span class="badge-dot" aria-hidden="true"></span>MASc, University of Toronto</span>
+      <span class="badge badge-green"><span class="badge-dot" aria-hidden="true"></span>Open to the Netherlands &amp; Northern Italy</span>
     </div>
     <div class="hero-cta">
-      <a href="#projects" class="btn-primary">View My Work →</a>
-      <a href="mailto:zere.bekzhanova@alumni.utoronto.ca" class="btn-secondary">✉ Get in Touch</a>
+      <a href="#projects" class="btn-primary">View my work &#8594;</a>
+      <a href="mailto:zere.bekzhanova@alumni.utoronto.ca" class="btn-secondary"><span aria-hidden="true">&#9993;</span> Get in touch</a>
     </div>
   </div>
-  <div class="hero-scroll-hint">
+  <div class="hero-scroll-hint" aria-hidden="true">
     <div class="scroll-line"></div>
     <span>Scroll</span>
   </div>
@@ -873,20 +979,20 @@
 <div id="stats">
   <div class="stats-grid">
     <div class="stat-item">
-      <div class="stat-number" data-target="3">3</div>
-      <div class="stat-label">Full Scholarships Awarded</div>
-    </div>
-    <div class="stat-item stat-divider">
-      <div class="stat-number" data-target="3">3</div>
-      <div class="stat-label">Publications &amp; Conference Papers</div>
-    </div>
-    <div class="stat-item stat-divider">
       <div class="stat-number" data-target="4">4</div>
-      <div class="stat-label">Languages Spoken</div>
+      <div class="stat-label">Peer-reviewed &amp; conference papers</div>
     </div>
     <div class="stat-item stat-divider">
-      <div class="stat-number" data-target="175" data-suffix="K+">175K+</div>
-      <div class="stat-label">Schneider Go Green Competitors</div>
+      <div class="stat-number" data-target="4522">4,522</div>
+      <div class="stat-label">Structured LCA line items from the thesis pipeline</div>
+    </div>
+    <div class="stat-item stat-divider">
+      <div class="stat-number" data-target="25">25</div>
+      <div class="stat-label">Building-phase scenarios assessed</div>
+    </div>
+    <div class="stat-item stat-divider">
+      <div class="stat-number" data-target="2">2</div>
+      <div class="stat-label">Professional certifications</div>
     </div>
   </div>
 </div>
@@ -894,44 +1000,48 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="section-inner">
-    <div class="section-label">About</div>
-    <h2 class="section-title">Where data meets<br>decarbonisation strategy.</h2>
+    <p class="section-label">About</p>
+    <h2 class="section-title">Carbon numbers, and the tools<br>that make them repeatable.</h2>
     <div class="about-grid">
       <div class="about-text reveal">
         <p>
-          I'm a civil and building engineer from Kazakhstan with a graduate research specialisation in
-          <strong>material use in building renovation and embodied GHG assessment</strong>. My thesis work, published through the University of Toronto, quantifies material intensity and GHG emissions across refurbishment scenarios — combining Revit-based material take-off workflows, LCA methodology, and data analysis in Python.
+          I am an early-career engineer working across two connected areas. The first is building
+          sustainability: <strong>embodied carbon, life cycle assessment and building performance</strong>.
+          The second is <strong>computational and parametric design</strong>: Rhino, Grasshopper, Python
+          automation and BIM. One tells me what a building costs the climate. The other lets me test that
+          answer across many options instead of one.
         </p>
         <p>
-          From Nazarbayev University to Politecnico di Milano to the University of Toronto's
-          <strong>Centre for the Sustainable Built Environment (CSBE)</strong>, my career has been shaped
-          by the belief that climate action demands both rigorous quantification and scalable strategy.
-          I've published in Q1 journals during undergraduate, co-authored a conference paper at
-          <strong>ETH Zurich SBE25</strong>, and led the team that won the <strong>Climate Impacts
-          Hackathon 2024</strong>.
+          My MASc research at the University of Toronto, supervised by Prof. Shoshanna Saxe, measured
+          material use and embodied carbon across building refurbishment scenarios. The workflow ran from a
+          multi-phase Revit model through material take-off to <strong>cradle-to-gate LCA</strong>. The raw
+          take-off came out at roughly 16,000 rows. A Python pipeline reduced that to
+          <strong>4,522 structured line items across 25 building-phase scenarios</strong>, so scenarios
+          could be compared consistently instead of rebuilt by hand.
         </p>
         <p>
-          What distinguishes me is breadth matched with depth: I work across engineering, data analysis,
-          and sustainability assessment — and bring multilingual communication skills across four languages.
-          I thrive in multidisciplinary environments where analytical rigour and systems thinking are both essential.
+          That research is published as a first-author paper in <strong>Energy and Buildings</strong>
+          (vol. 370, 2026) and was presented at <strong>SBE25 at ETH Zurich</strong>. Alongside it I work in
+          Grasshopper on parametric studies, including PV array placement and algorithmic building geometry.
+          I hold LEED Green Associate and the One Click LCA Construction LCA Specialist certification.
         </p>
       </div>
       <div class="about-highlights reveal" style="transition-delay:0.15s">
         <div class="highlight-card">
-          <div class="highlight-title">🏗 Graduate Research · CSBE, University of Toronto</div>
-          <div class="highlight-desc">Thesis: <em>Material Use in Renovation, Retrofit, and Refurbishment of Existing Buildings</em> — supervised by Prof. Shoshanna Saxe. Fully funded (merit scholarship + research assistantship).</div>
+          <p class="highlight-title"><span aria-hidden="true">&#127959;</span> MASc Research &middot; University of Toronto</p>
+          <p class="highlight-desc">Material use and embodied carbon across building refurbishment scenarios, supervised by Prof. Shoshanna Saxe at the Centre for the Sustainable Built Environment. Revit material take-off feeding cradle-to-gate LCA.</p>
         </div>
         <div class="highlight-card">
-          <div class="highlight-title">🌍 International Research Trajectory</div>
-          <div class="highlight-desc">Kazakhstan → Italy (Politecnico di Milano, full scholarship, English-medium programme) → Canada (UofT, fully funded) — 3 top institutions, 3 continents, 3 academic cultures.</div>
+          <p class="highlight-title"><span aria-hidden="true">&#128196;</span> First-Author Paper, 2026</p>
+          <p class="highlight-desc">First author in Energy and Buildings, vol. 370, article 118075 (2026). Also first author in Nanomaterials (2021) and co-author in Buildings (2022), plus a conference paper at SBE25, ETH Zurich (2025).</p>
         </div>
         <div class="highlight-card">
-          <div class="highlight-title">📄 ETH Zurich SBE25 Co-Author</div>
-          <div class="highlight-desc">Published at the Sustainable Built Environment Conference 2025 Zurich — 400 participants from 41 countries and 178 institutions. Conference theme: Systems Thinking in the Built Environment.</div>
+          <p class="highlight-title"><span aria-hidden="true">&#128208;</span> Parametric Design in Grasshopper</p>
+          <p class="highlight-desc">Grasshopper definitions for PV array placement and algorithmic building geometry, with Python handling the data preparation and export around them.</p>
         </div>
         <div class="highlight-card">
-          <div class="highlight-title">🏆 European Finalist · Schneider Go Green 2021</div>
-          <div class="highlight-desc">Smart home energy management and sustainability project. Competed against 175,000+ participants globally; advanced to European finalist round.</div>
+          <p class="highlight-title"><span aria-hidden="true">&#127941;</span> Certified in LCA and Green Building</p>
+          <p class="highlight-desc">LEED Green Associate (USGBC) and Construction LCA Specialist (One Click LCA). Working knowledge of OpenLCA, ecoinvent and One Click LCA.</p>
         </div>
       </div>
     </div>
@@ -941,131 +1051,142 @@
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-inner">
-    <div class="section-label">Projects</div>
-    <h2 class="section-title">Applied work across<br>buildings, cities &amp; systems.</h2>
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">From model geometry<br>to carbon numbers.</h2>
     <div class="projects-grid">
 
-      <!-- Featured -->
+      <!-- Featured 1 -->
       <div class="project-card featured reveal">
-        <span class="project-icon">🏛</span>
-        <span class="project-tag tag-green">⭐ Graduate Thesis · Flagship</span>
-        <div class="project-title">Material Use in Renovation, Retrofit and Refurbishment of Existing Buildings</div>
-        <div class="project-desc">
-          MAS thesis research at the University of Toronto CSBE, supervised by Prof. Shoshanna Saxe.
-          Conducted literature reviews to identify research gaps in building material use and sustainability.
-          Developed a 3D multi-phase building model in Autodesk Revit, using material take-off tools to
-          calculate material volumes, convert to masses, and assess cradle-to-gate GHG emissions across
-          multiple building intervention scenarios. Performed data analysis in Python. Presented at the
-          2024 CSBE Embodied GHG Symposium and at ETH Zurich SBE25 (2025). Extended GHG analysis
-          currently under peer review for publication.
-        </div>
+        <span class="project-icon" aria-hidden="true">&#127963;</span>
+        <span class="project-tag tag-green">Featured &middot; MASc Thesis</span>
+        <h3 class="project-title">Embodied Carbon Across Building Refurbishment Scenarios</h3>
+        <p class="project-desc">
+          MASc research at the University of Toronto, supervised by Prof. Shoshanna Saxe, covering
+          <strong>five real refurbishment, renovation and adaptive reuse projects</strong> in Canada and
+          the United States. I built multi-phase building models in Revit and used material take-off to
+          convert modelled volumes into material masses, then into cradle-to-gate embodied carbon. The
+          take-off produced roughly <strong>16,000 raw rows</strong>. A Python pipeline cleaned, mapped and
+          aggregated those into <strong>4,522 structured line items across 25 building-phase scenarios</strong>,
+          which turned a manual, error-prone comparison into one that could be rerun whenever the model or
+          the emission factors changed. The retained structures kept
+          <strong>60 to 98 percent of their original structural mass</strong>, while embodied GHG still rose
+          <strong>1 to 60 percent</strong> against the originals, driven by new insulation, windows and
+          concrete. Published as first author in Energy and Buildings, vol. 370 (2026).
+        </p>
         <div class="project-tools">
           <span class="tool-chip">Revit</span>
-          <span class="tool-chip">Python</span>
           <span class="tool-chip">Material Take-off</span>
-          <span class="tool-chip">GHG Assessment</span>
-          <span class="tool-chip">LCA</span>
+          <span class="tool-chip">Python</span>
+          <span class="tool-chip">pandas</span>
+          <span class="tool-chip">Cradle-to-Gate LCA</span>
           <span class="tool-chip">OpenLCA</span>
+          <span class="tool-chip">ecoinvent</span>
         </div>
-        <div class="project-meta">
-          <span class="dot"></span>
-          University of Toronto CSBE &nbsp;·&nbsp; Sep 2023 – Oct 2025 &nbsp;·&nbsp; Fully funded
+        <div class="pub-links" style="margin-top:1.1rem">
+          <a class="pub-link-chip" href="https://www.sciencedirect.com/science/article/abs/pii/S0378778826011357" target="_blank" rel="noopener noreferrer">Read the paper</a>
+          <a class="pub-link-chip" href="https://csbe.civmin.utoronto.ca/research/material-use-and-embodied-ghg-in-renovation-retrofit-refurbishment-and-adaptive-reuse-of-existing-buildings/" target="_blank" rel="noopener noreferrer">Project page, U of T CSBE</a>
         </div>
+        <p class="project-meta">
+          <span class="dot" aria-hidden="true"></span>
+          University of Toronto &nbsp;&middot;&nbsp; 2023 to 2025
+        </p>
+      </div>
+
+      <!-- Featured 2 -->
+      <div class="project-card featured reveal" style="transition-delay:0.1s">
+        <span class="project-icon" aria-hidden="true">&#128208;</span>
+        <span class="project-tag tag-purple">Featured &middot; Computational Design</span>
+        <h3 class="project-title">Parametric Design Studies in Grasshopper</h3>
+        <p class="project-desc">
+          Parametric definitions built in Rhino and Grasshopper, covering
+          <strong>PV array placement</strong> across building surfaces and
+          <strong>algorithmic generation of building geometry</strong>. The design variables are exposed as
+          parameters, so panel layouts and massing options can be generated and compared as a set rather
+          than drawn one at a time. Python handles the data preparation and exports the results for
+          analysis, which keeps the geometry work and the performance numbers in the same loop.
+        </p>
+        <div class="project-tools">
+          <span class="tool-chip">Rhino</span>
+          <span class="tool-chip">Grasshopper</span>
+          <span class="tool-chip">Python</span>
+          <span class="tool-chip">Climate Studio</span>
+          <span class="tool-chip">Dynamo</span>
+        </div>
+        <p class="project-meta">
+          <span class="dot" aria-hidden="true"></span>
+          Parametric &amp; computational design work
+        </p>
       </div>
 
       <!-- Hackathon -->
-      <div class="project-card reveal" style="transition-delay:0.1s">
-        <span class="project-icon">🏆</span>
-        <span class="project-tag tag-amber">Winner · Climate Hackathon 2024</span>
-        <div class="project-title">Toronto Urban Heat Vulnerability &amp; Cooling Centre Optimisation</div>
-        <div class="project-desc">
-          Led a data-driven Python and QGIS pipeline to identify 8 optimal cooling centre locations for
-          2.8M Toronto residents. Downscaled CanESM5 climate projections (SSP2-4.5 &amp; SSP5-8.5, 2070–2100)
-          using Quantile Delta Mapping; calculated Humidex heat hazard days; overlaid population
-          vulnerability indices (income, age, housing status, education) to produce ward-level risk maps.
-        </div>
+      <div class="project-card reveal" style="transition-delay:0.15s">
+        <span class="project-icon" aria-hidden="true">&#127942;</span>
+        <span class="project-tag tag-amber">Winner &middot; Climate Impacts Hackathon 2024</span>
+        <h3 class="project-title">Toronto Urban Heat Vulnerability &amp; Cooling Centre Siting</h3>
+        <p class="project-desc">
+          Led a Python and QGIS pipeline to identify cooling centre locations for Toronto. Downscaled
+          CanESM5 climate projections (SSP2-4.5 and SSP5-8.5, 2070 to 2100) using Quantile Delta Mapping,
+          calculated Humidex heat hazard days, and overlaid population vulnerability indicators to produce
+          ward-level risk maps. First place.
+        </p>
         <div class="project-tools">
           <span class="tool-chip">Python</span>
           <span class="tool-chip">QGIS</span>
           <span class="tool-chip">CanESM5</span>
-          <span class="tool-chip">QDM</span>
-          <span class="tool-chip">GIS Analysis</span>
+          <span class="tool-chip">Quantile Delta Mapping</span>
+          <span class="tool-chip">Spatial Analysis</span>
         </div>
-        <div class="project-meta">
-          <span class="dot"></span>
-          CIV1321 · University of Toronto · 2024
-        </div>
-      </div>
-
-      <!-- ETH -->
-      <div class="project-card reveal" style="transition-delay:0.15s">
-        <span class="project-icon">📄</span>
-        <span class="project-tag tag-blue">Peer-Reviewed · ETH Zurich</span>
-        <div class="project-title">Material Use in Building Renovation &amp; Retrofit — SBE25</div>
-        <div class="project-desc">
-          Co-authored conference paper published at the Sustainable Built Environment Conference 2025 Zurich
-          (ETH Zurich, Jun 2025). Research quantified material flows in renovation, retrofit and refurbishment
-          of existing buildings — a critical gap in whole-life carbon accounting. Full paper published in IOP
-          Conference Series – Earth and Environmental Sciences.
-        </div>
-        <div class="project-tools">
-          <span class="tool-chip">LCA</span>
-          <span class="tool-chip">Material Flows</span>
-          <span class="tool-chip">Building Stock</span>
-          <span class="tool-chip">OpenLCA</span>
-        </div>
-        <div class="project-meta">
-          <span class="dot"></span>
-          ETH Zurich SBE25 · Jun 2025 · 41 countries represented
-        </div>
+        <p class="project-meta">
+          <span class="dot" aria-hidden="true"></span>
+          University of Toronto &nbsp;&middot;&nbsp; 2024
+        </p>
       </div>
 
       <!-- Netherlands -->
       <div class="project-card reveal" style="transition-delay:0.2s">
-        <span class="project-icon">⚡</span>
-        <span class="project-tag tag-purple">Energy Systems Policy</span>
-        <div class="project-title">Net-Zero Pathway Modelling — The Netherlands 2040</div>
-        <div class="project-desc">
-          Developed a national decarbonisation scenario for the Netherlands targeting net-zero by 2040
-          across electricity generation, buildings, and agriculture — representing 59% of national emissions.
-          Modelled grid transition (offshore wind 21.5 GW + 65 GW solar + nuclear), building retrofit
-          programme (8.8M buildings), and agricultural emissions abatement (−53%). Quantified costs and
-          social enabling factors.
-        </div>
+        <span class="project-icon" aria-hidden="true">&#9889;</span>
+        <span class="project-tag tag-blue">Energy Systems</span>
+        <h3 class="project-title">Net-Zero Pathway Modelling for the Netherlands, 2040</h3>
+        <p class="project-desc">
+          Built a national decarbonisation scenario for the Netherlands targeting net zero by 2040 across
+          electricity generation, buildings and agriculture. Modelled the grid transition, a building
+          retrofit programme at national scale, and agricultural emissions abatement, then quantified the
+          cost and the enabling conditions each pathway depends on.
+        </p>
         <div class="project-tools">
           <span class="tool-chip">Energy Modelling</span>
-          <span class="tool-chip">GHG Scenario</span>
+          <span class="tool-chip">GHG Scenarios</span>
           <span class="tool-chip">Excel</span>
           <span class="tool-chip">Policy Analysis</span>
         </div>
-        <div class="project-meta">
-          <span class="dot"></span>
-          CIV1399 · University of Toronto · Dec 2023
-        </div>
+        <p class="project-meta">
+          <span class="dot" aria-hidden="true"></span>
+          University of Toronto &nbsp;&middot;&nbsp; 2023
+        </p>
       </div>
 
       <!-- Diet LCA -->
       <div class="project-card reveal" style="transition-delay:0.25s">
-        <span class="project-icon">🌱</span>
+        <span class="project-icon" aria-hidden="true">&#127793;</span>
         <span class="project-tag tag-green">Comparative LCA</span>
-        <div class="project-title">Cradle-to-Grave LCA of Canadian, Mediterranean &amp; EAT-Lancet Diets</div>
-        <div class="project-desc">
-          Conducted full cradle-to-grave life cycle assessment of three standard diets using OpenLCA
-          (Ecoinvent v3.10), IPCC 2013, AWARE water scarcity model, and the dataFIELD database. Quantified
-          GHG and freshwater stress impacts, performed multi-parameter sensitivity analysis, and modelled
-          national-scale reductions from dietary shifts (~1 MtCO₂e/day potential).
-        </div>
+        <h3 class="project-title">Cradle-to-Grave LCA of Three Dietary Patterns</h3>
+        <p class="project-desc">
+          Full cradle-to-grave life cycle assessment of Canadian, Mediterranean and EAT-Lancet diets in
+          OpenLCA, using ecoinvent v3.10, the IPCC 2013 impact method and the AWARE water scarcity model.
+          Quantified greenhouse gas and freshwater stress impacts, ran multi-parameter sensitivity
+          analysis, and scaled the results to estimate national reductions from dietary shifts.
+        </p>
         <div class="project-tools">
           <span class="tool-chip">OpenLCA</span>
-          <span class="tool-chip">Ecoinvent</span>
+          <span class="tool-chip">ecoinvent v3.10</span>
           <span class="tool-chip">IPCC 2013</span>
           <span class="tool-chip">AWARE</span>
-          <span class="tool-chip">dataFIELD</span>
+          <span class="tool-chip">Sensitivity Analysis</span>
         </div>
-        <div class="project-meta">
-          <span class="dot"></span>
-          CIV1307 · University of Toronto · Jun 2024
-        </div>
+        <p class="project-meta">
+          <span class="dot" aria-hidden="true"></span>
+          University of Toronto &nbsp;&middot;&nbsp; 2024
+        </p>
       </div>
 
     </div>
@@ -1075,43 +1196,68 @@
 <!-- PUBLICATIONS -->
 <section id="publications">
   <div class="section-inner">
-    <div class="section-label">Research</div>
+    <p class="section-label">Research</p>
     <h2 class="section-title">Published work &amp;<br>academic contributions.</h2>
     <div class="pub-list">
 
       <div class="pub-card reveal">
-        <div class="pub-year">2025</div>
+        <div class="pub-year">2026</div>
         <div>
-          <span class="pub-journal">SBE Conference Series · ETH Zurich / IOP Conf. Series: Earth &amp; Env. Sci.</span>
-          <div class="pub-title">Material Use in Renovation, Retrofit and Refurbishment of Existing Buildings</div>
-          <div class="pub-authors"><strong>Bekzhanova Z.</strong>, Zuluaga S., Ruiz-Valero L., Saxe S. — Presented at SBE25 Zurich, Jun 2025 (400 participants, 41 countries)</div>
+          <span class="pub-journal">Energy and Buildings, vol. 370, article 118075 &middot; Elsevier</span>
+          <h3 class="pub-title"><a href="https://www.sciencedirect.com/science/article/abs/pii/S0378778826011357" target="_blank" rel="noopener noreferrer">Material use and embodied GHG in refurbishment and adaptive reuse of existing buildings</a></h3>
+          <p class="pub-authors"><strong>Bekzhanova Z.</strong>, Ruiz-Valero L., Zuluaga S., Saxe S. &middot; First author</p>
+          <div class="pub-links">
+            <a class="pub-link-chip" href="https://www.sciencedirect.com/science/article/abs/pii/S0378778826011357" target="_blank" rel="noopener noreferrer">ScienceDirect</a>
+            <a class="pub-link-chip" href="https://doi.org/10.1016/j.enbuild.2026.118075" target="_blank" rel="noopener noreferrer">doi 10.1016/j.enbuild.2026.118075</a>
+          </div>
         </div>
       </div>
 
       <div class="pub-card reveal" style="transition-delay:0.1s">
-        <div class="pub-year">2022</div>
+        <div class="pub-year">2025</div>
         <div>
-          <span class="pub-journal">Buildings · MDPI (Q1 — Construction &amp; Building Technology)</span>
-          <div class="pub-title">A Review of Improvement of Interfacial Transition Zone and Adherent Mortar in Recycled Concrete Aggregate</div>
-          <div class="pub-authors"><strong>Bekzhanova Z.</strong> et al. — Nazarbayev University · Undergraduate Research</div>
+          <span class="pub-journal">SBE25 Zurich &middot; IOP Conference Series: Earth and Environmental Science</span>
+          <h3 class="pub-title"><a href="https://www.research-collection.ethz.ch/bitstreams/3ce26321-a1e5-452a-9054-a657fdd1a7e8/download" target="_blank" rel="noopener noreferrer">Material Use in Renovation, Retrofit and Refurbishment of Existing Buildings</a></h3>
+          <p class="pub-authors"><strong>Bekzhanova Z.</strong>, Zuluaga S., Ruiz-Valero L., Saxe S. &middot; Presented at SBE25, ETH Zurich, June 2025</p>
+          <div class="pub-links">
+            <a class="pub-link-chip" href="https://www.research-collection.ethz.ch/bitstreams/3ce26321-a1e5-452a-9054-a657fdd1a7e8/download" target="_blank" rel="noopener noreferrer">ETH Research Collection (PDF)</a>
+          </div>
         </div>
       </div>
 
       <div class="pub-card reveal" style="transition-delay:0.2s">
-        <div class="pub-year">2021</div>
+        <div class="pub-year">2024</div>
         <div>
-          <span class="pub-journal">Nanomaterials · MDPI (Q1 — Materials Science)</span>
-          <div class="pub-title">Self-Sensing Cementitious Composites: Review and Perspective</div>
-          <div class="pub-authors"><strong>Bekzhanova Z.</strong> et al. — Nazarbayev University · Undergraduate Research</div>
+          <span class="pub-journal">Research project &middot; University of Toronto, Centre for the Sustainable Built Environment</span>
+          <h3 class="pub-title"><a href="https://csbe.civmin.utoronto.ca/research/material-use-and-embodied-ghg-in-renovation-retrofit-refurbishment-and-adaptive-reuse-of-existing-buildings/" target="_blank" rel="noopener noreferrer">Material use and embodied GHG in renovation, retrofit, refurbishment and adaptive reuse of existing buildings</a></h3>
+          <p class="pub-authors"><strong>Bekzhanova Z.</strong>, Ruiz-Valero L., Zuluaga S., Saxe S. &middot; Presented at the 2024 CSBE Embodied GHG Symposium</p>
+          <div class="pub-links">
+            <a class="pub-link-chip" href="https://csbe.civmin.utoronto.ca/research/material-use-and-embodied-ghg-in-renovation-retrofit-refurbishment-and-adaptive-reuse-of-existing-buildings/" target="_blank" rel="noopener noreferrer">Project page, U of T CSBE</a>
+          </div>
         </div>
       </div>
 
       <div class="pub-card reveal" style="transition-delay:0.3s">
-        <div class="pub-year">2025</div>
+        <div class="pub-year">2022</div>
         <div>
-          <span class="pub-journal">Symposium Presentation · University of Toronto CSBE</span>
-          <div class="pub-title">Embodied GHG Emissions in Building Refurbishment Scenarios</div>
-          <div class="pub-authors"><strong>Bekzhanova Z.</strong> — 2024 CSBE Embodied GHG Symposium · Supervisor: Prof. Shoshanna Saxe</div>
+          <span class="pub-journal">Buildings, 12(10), 1600 &middot; MDPI</span>
+          <h3 class="pub-title"><a href="https://www.mdpi.com/2075-5309/12/10/1600" target="_blank" rel="noopener noreferrer">A Review of Improvement of Interfacial Transition Zone and Adherent Mortar in Recycled Concrete Aggregate</a></h3>
+          <p class="pub-authors">Memon S.A., <strong>Bekzhanova Z.</strong>, Murzakarimova A. &middot; Nazarbayev University</p>
+          <div class="pub-links">
+            <a class="pub-link-chip" href="https://www.mdpi.com/2075-5309/12/10/1600" target="_blank" rel="noopener noreferrer">MDPI, open access</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-card reveal" style="transition-delay:0.4s">
+        <div class="pub-year">2021</div>
+        <div>
+          <span class="pub-journal">Nanomaterials, 11(9), 2355 &middot; MDPI</span>
+          <h3 class="pub-title"><a href="https://www.mdpi.com/2079-4991/11/9/2355" target="_blank" rel="noopener noreferrer">Self-Sensing Cementitious Composites: Review and Perspective</a></h3>
+          <p class="pub-authors"><strong>Bekzhanova Z.</strong>, Memon S.A., Kim J.R. &middot; First author &middot; Nazarbayev University</p>
+          <div class="pub-links">
+            <a class="pub-link-chip" href="https://www.mdpi.com/2079-4991/11/9/2355" target="_blank" rel="noopener noreferrer">MDPI, open access</a>
+          </div>
         </div>
       </div>
 
@@ -1122,150 +1268,113 @@
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-inner">
-    <div class="section-label">Expertise</div>
+    <p class="section-label">Expertise</p>
     <h2 class="section-title">Technical skills &amp;<br>domain knowledge.</h2>
     <div class="skills-grid">
 
       <div class="skill-category reveal">
-        <div class="skill-cat-title">Decarbonisation &amp; Carbon</div>
-        <div class="skill-item">
-          <div class="skill-name"><span>Embodied Carbon Assessment</span><span class="skill-level">Proficient</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="75" style="--bar-w:75%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>Cradle-to-Gate GHG Quantification</span><span class="skill-level">Proficient</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="75" style="--bar-w:75%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>LCA Methodology (ISO 14044)</span><span class="skill-level">Proficient</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="72" style="--bar-w:72%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>GHG Scenario Modelling</span><span class="skill-level">Proficient</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="72" style="--bar-w:72%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>EN 15804 / EPD Frameworks</span><span class="skill-level">Familiar</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="45" style="--bar-w:45%"></div></div>
-        </div>
+        <h3 class="skill-cat-title">Computational &amp; Parametric</h3>
+        <div class="skill-item"><span class="skill-name">Rhino</span><span class="skill-level">Working</span></div>
+        <div class="skill-item"><span class="skill-name">Grasshopper (parametric definitions)</span><span class="skill-level">Working</span></div>
+        <div class="skill-item"><span class="skill-name">Python scripting &amp; automation</span><span class="skill-level">Working</span></div>
+        <div class="skill-item"><span class="skill-name">Dynamo</span><span class="skill-level lvl-basic">Basic</span></div>
       </div>
 
       <div class="skill-category reveal" style="transition-delay:0.1s">
-        <div class="skill-cat-title">Software &amp; BIM Tools</div>
-        <div class="skill-item">
-          <div class="skill-name"><span>Autodesk Revit (Material Take-off)</span><span class="skill-level">Proficient</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="75" style="--bar-w:75%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>IES VE · EnergyPlus · ClimateStudio</span><span class="skill-level">Familiar (coursework)</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="48" style="--bar-w:48%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>AutoCAD</span><span class="skill-level">Familiar</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="52" style="--bar-w:52%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>Primavera P6</span><span class="skill-level">Familiar</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="42" style="--bar-w:42%"></div></div>
-        </div>
+        <h3 class="skill-cat-title">BIM &amp; CAD</h3>
+        <div class="skill-item"><span class="skill-name">Revit</span><span class="skill-level">Working</span></div>
+        <div class="skill-item"><span class="skill-name">Revit material take-off</span><span class="skill-level">Working</span></div>
+        <div class="skill-item"><span class="skill-name">AutoCAD</span><span class="skill-level">Working</span></div>
       </div>
 
       <div class="skill-category reveal" style="transition-delay:0.2s">
-        <div class="skill-cat-title">LCA Software</div>
-        <div class="skill-item">
-          <div class="skill-name"><span>One Click LCA</span><span class="skill-level">Proficient</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="70" style="--bar-w:70%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>OpenLCA + Ecoinvent</span><span class="skill-level">Proficient</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="68" style="--bar-w:68%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>AWARE Water Scarcity</span><span class="skill-level">Familiar</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="52" style="--bar-w:52%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>dataFIELD Database</span><span class="skill-level">Familiar</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="50" style="--bar-w:50%"></div></div>
-        </div>
+        <h3 class="skill-cat-title">Simulation &amp; Analysis</h3>
+        <div class="skill-item"><span class="skill-name">Climate Studio (environmental)</span><span class="skill-level">Working</span></div>
+        <div class="skill-item"><span class="skill-name">SAP2000 (structural)</span><span class="skill-level lvl-academic">Academic</span></div>
+        <div class="skill-item"><span class="skill-name">ETABS (structural)</span><span class="skill-level lvl-academic">Academic</span></div>
       </div>
 
       <div class="skill-category reveal" style="transition-delay:0.1s">
-        <div class="skill-cat-title">Data &amp; Programming</div>
-        <div class="skill-item">
-          <div class="skill-name"><span>Python (data analysis)</span><span class="skill-level">Proficient</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="72" style="--bar-w:72%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>QGIS / Spatial Analysis</span><span class="skill-level">Proficient</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="72" style="--bar-w:72%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>Excel (Advanced)</span><span class="skill-level">Advanced</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="85" style="--bar-w:85%"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name"><span>Scientific Writing</span><span class="skill-level">Advanced</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="85" style="--bar-w:85%"></div></div>
-        </div>
+        <h3 class="skill-cat-title">LCA &amp; Carbon</h3>
+        <div class="skill-item"><span class="skill-name">OpenLCA</span><span class="skill-level">Working</span></div>
+        <div class="skill-item"><span class="skill-name">One Click LCA</span><span class="skill-level">Working</span></div>
+        <div class="skill-item"><span class="skill-name">ecoinvent</span><span class="skill-level">Working</span></div>
+        <div class="skill-item"><span class="skill-name">Embodied &amp; whole-life carbon</span><span class="skill-level">Working</span></div>
+        <div class="skill-item"><span class="skill-name">Material flow analysis (MFA)</span><span class="skill-level">Working</span></div>
       </div>
 
       <div class="skill-category reveal" style="transition-delay:0.2s">
-        <div class="skill-cat-title">Certifications &amp; Standards</div>
-        <div class="cert-strip">
-          <div class="cert-item">
-            <span class="cert-icon">🏅</span>
-            <div><div class="cert-name">LEED Green Associate</div><div class="cert-org">USGBC · Active since Feb 2026</div></div>
-          </div>
-          <div class="cert-item">
-            <span class="cert-icon">🏅</span>
-            <div><div class="cert-name">Construction LCA Specialist</div><div class="cert-org">One Click LCA Bootcamp · Active since 2024</div></div>
-          </div>
-          <div class="cert-item">
-            <span class="cert-icon">📚</span>
-            <div><div class="cert-name">Circular Economy for Built Environment</div><div class="cert-org">TU Delft · edX</div></div>
-          </div>
-          <div class="cert-item">
-            <span class="cert-icon">📚</span>
-            <div><div class="cert-name">Solar Cells</div><div class="cert-org">Technical University of Denmark · edX</div></div>
-          </div>
-        </div>
+        <h3 class="skill-cat-title">Data</h3>
+        <div class="skill-item"><span class="skill-name">Python (pandas)</span><span class="skill-level">Working</span></div>
+        <div class="skill-item"><span class="skill-name">SQL</span><span class="skill-level">Working</span></div>
+        <div class="skill-item"><span class="skill-name">Power BI</span><span class="skill-level">Working</span></div>
+        <div class="skill-item"><span class="skill-name">Excel</span><span class="skill-level lvl-advanced">Advanced</span></div>
+        <div class="skill-item"><span class="skill-name">QGIS</span><span class="skill-level">Working</span></div>
       </div>
 
       <div class="skill-category reveal" style="transition-delay:0.3s">
-        <div class="skill-cat-title">Languages</div>
+        <h3 class="skill-cat-title">Certifications</h3>
+        <div class="cert-strip">
+          <div class="cert-item">
+            <span class="cert-icon" aria-hidden="true">&#127941;</span>
+            <div><div class="cert-name">LEED Green Associate</div><div class="cert-org">USGBC</div></div>
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon" aria-hidden="true">&#127941;</span>
+            <div><div class="cert-name">Construction LCA Specialist</div><div class="cert-org">One Click LCA</div></div>
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon" aria-hidden="true">&#128218;</span>
+            <div><div class="cert-name">Circular Economy for the Built Environment</div><div class="cert-org">TU Delft &middot; edX</div></div>
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon" aria-hidden="true">&#128218;</span>
+            <div><div class="cert-name">Solar Cells</div><div class="cert-org">Technical University of Denmark &middot; edX</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-category reveal" style="transition-delay:0.35s">
+        <h3 class="skill-cat-title">Languages</h3>
         <div class="lang-grid">
           <div class="lang-item">
             <span class="lang-name">English (C1+, IELTS 8.5)</span>
-            <div class="lang-dots">
-              <div class="lang-dot filled"></div><div class="lang-dot filled"></div>
-              <div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div>
-            </div>
-          </div>
-          <div class="lang-item">
-            <span class="lang-name">Russian (Native)</span>
-            <div class="lang-dots">
+            <div class="lang-dots" role="img" aria-label="Five out of five">
               <div class="lang-dot filled"></div><div class="lang-dot filled"></div>
               <div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div>
             </div>
           </div>
           <div class="lang-item">
             <span class="lang-name">Kazakh (Native)</span>
-            <div class="lang-dots">
+            <div class="lang-dots" role="img" aria-label="Five out of five">
               <div class="lang-dot filled"></div><div class="lang-dot filled"></div>
               <div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div>
             </div>
           </div>
           <div class="lang-item">
+            <span class="lang-name">Russian (Native)</span>
+            <div class="lang-dots" role="img" aria-label="Five out of five">
+              <div class="lang-dot filled"></div><div class="lang-dot filled"></div>
+              <div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div>
+            </div>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Dutch (Learning)</span>
+            <div class="lang-dots" role="img" aria-label="One out of five">
+              <div class="lang-dot filled"></div><div class="lang-dot"></div>
+              <div class="lang-dot"></div><div class="lang-dot"></div><div class="lang-dot"></div>
+            </div>
+          </div>
+          <div class="lang-item">
             <span class="lang-name">Italian (Pre-Intermediate)</span>
-            <div class="lang-dots">
+            <div class="lang-dots" role="img" aria-label="Two out of five">
               <div class="lang-dot filled"></div><div class="lang-dot filled"></div>
               <div class="lang-dot"></div><div class="lang-dot"></div><div class="lang-dot"></div>
             </div>
           </div>
           <div class="lang-item">
             <span class="lang-name">Turkish (Beginner)</span>
-            <div class="lang-dots">
+            <div class="lang-dots" role="img" aria-label="One out of five">
               <div class="lang-dot filled"></div><div class="lang-dot"></div>
               <div class="lang-dot"></div><div class="lang-dot"></div><div class="lang-dot"></div>
             </div>
@@ -1280,69 +1389,70 @@
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-inner">
-    <div class="section-label">Experience</div>
-    <h2 class="section-title">Where I've worked<br>&amp; what I've delivered.</h2>
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">Where I have worked<br>&amp; what I delivered.</h2>
     <div class="timeline">
 
       <div class="timeline-item reveal">
-        <div class="timeline-period">Sep 2023 – Oct 2025</div>
-        <div class="timeline-role">Graduate Research Assistant — Material Use &amp; GHG Assessment</div>
-        <div class="timeline-org">University of Toronto · Centre for the Sustainable Built Environment <span class="org-badge">Toronto, Canada</span></div>
+        <p class="timeline-period">Feb 2026 to present</p>
+        <h3 class="timeline-role">Systems &amp; Business Analyst</h3>
+        <p class="timeline-org">ZAAM Construction <span class="org-badge">Current</span></p>
         <ul class="timeline-bullets">
-          <li>Conducted <strong>literature reviews</strong> under Prof. Shoshanna Saxe to identify research gaps in building sustainability, material intensity, and refurbishment</li>
-          <li>Built a <strong>3D multi-phase building model in Autodesk Revit</strong>, using material take-off tools to calculate material volumes, masses, and cradle-to-gate GHG emissions across intervention scenarios</li>
-          <li>Performed <strong>data analysis in Python</strong> to support GHG quantification and comparative scenario assessment</li>
-          <li>Extended GHG analysis developed into a manuscript <strong>currently under peer review</strong></li>
-          <li>Presented research at the <strong>2024 CSBE Embodied GHG Symposium</strong> (poster: material intensity and GHG emissions) and at <strong>ETH Zurich SBE25 Conference</strong> (Jun 2025)</li>
-          <li><strong>Won Climate Impacts Hackathon 2024</strong>: led Python/QGIS climate data pipeline to identify 8 optimal cooling centre locations for Toronto's most heat-vulnerable wards</li>
+          <li>Design <strong>KPI tracking and reporting frameworks</strong> for construction project operations, working in SQL, Power BI and Excel across multiple project sites</li>
+          <li>Automate the repetitive parts of the reporting cycle so the same figures are produced the same way each period</li>
+          <li>Structure internal processes and documentation from scratch, which keeps reporting consistent across project delivery teams</li>
         </ul>
       </div>
 
       <div class="timeline-item reveal" style="transition-delay:0.1s">
-        <div class="timeline-period">Feb 2026 – Present</div>
-        <div class="timeline-role">System / Business Analyst</div>
-        <div class="timeline-org">ZAAM Construction · Almaty, Kazakhstan <span class="org-badge">Current</span></div>
+        <p class="timeline-period">Sep 2023 to Oct 2025</p>
+        <h3 class="timeline-role">Graduate Research Assistant, Material Use &amp; Embodied Carbon</h3>
+        <p class="timeline-org">University of Toronto &middot; Centre for the Sustainable Built Environment <span class="org-badge">Toronto</span></p>
         <ul class="timeline-bullets">
-          <li>Applying <strong>engineering systems thinking</strong> to design KPI tracking and reporting frameworks for construction project operations</li>
-          <li>Structuring internal processes and documentation from scratch, contributing to operational consistency across construction project delivery</li>
+          <li>Built a <strong>multi-phase building model in Revit</strong> and used material take-off to convert modelled volumes into material masses and cradle-to-gate embodied carbon across intervention scenarios</li>
+          <li>Wrote a <strong>Python pipeline</strong> that reduced roughly 16,000 raw take-off rows to <strong>4,522 structured line items across 25 building-phase scenarios</strong></li>
+          <li>Published the analysis as a <strong>first-author paper in Energy and Buildings</strong>, vol. 370 (2026)</li>
+          <li>Presented at the <strong>CSBE Embodied GHG Symposium</strong> (2024) and at <strong>SBE25, ETH Zurich</strong> (June 2025)</li>
+          <li>Reviewed the literature on building material intensity and refurbishment under Prof. Shoshanna Saxe to locate the gap the thesis addresses</li>
+          <li><strong>Won the Climate Impacts Hackathon 2024</strong>, leading a Python and QGIS pipeline for cooling centre siting in Toronto</li>
         </ul>
       </div>
 
       <div class="timeline-item reveal" style="transition-delay:0.15s">
-        <div class="timeline-period">Sep 2019 – Jan 2022</div>
-        <div class="timeline-role">Undergraduate Research Assistant — Low-Carbon Construction Materials</div>
-        <div class="timeline-org">Nazarbayev University · School of Engineering <span class="org-badge">Astana, Kazakhstan</span></div>
+        <p class="timeline-period">Sep 2019 to Jan 2022</p>
+        <h3 class="timeline-role">Undergraduate Research Assistant, Low-Carbon Construction Materials</h3>
+        <p class="timeline-org">Nazarbayev University &middot; School of Engineering <span class="org-badge">Astana</span></p>
         <ul class="timeline-bullets">
-          <li>Co-authored <strong>two peer-reviewed publications</strong> in Q1 journals: recycled concrete aggregates (<em>Buildings</em>, MDPI, 2022) and nano-enhanced cementitious composites (<em>Nanomaterials</em>, MDPI, 2021)</li>
-          <li>Investigated <strong>sugarcane bagasse-based concrete</strong> as a zero-waste, low-carbon alternative — analysed building physics and environmental performance characteristics</li>
+          <li>Co-authored <strong>two peer-reviewed papers</strong>: recycled concrete aggregates (<em>Buildings</em>, MDPI, 2022) and self-sensing cementitious composites (<em>Nanomaterials</em>, MDPI, 2021)</li>
+          <li>Investigated <strong>sugarcane bagasse based concrete</strong> as a low-carbon, zero-waste alternative, analysing building physics and environmental performance</li>
         </ul>
       </div>
 
       <div class="timeline-item reveal" style="transition-delay:0.2s">
-        <div class="timeline-period">Aug 2021 – Feb 2022</div>
-        <div class="timeline-role">Engineering Intern — Building Services</div>
-        <div class="timeline-org">Schneider Electric · Almaty, Kazakhstan <span class="org-badge">Fortune 500</span></div>
+        <p class="timeline-period">Aug 2021 to Feb 2022</p>
+        <h3 class="timeline-role">Engineering Intern, Building Services</h3>
+        <p class="timeline-org">Schneider Electric <span class="org-badge">Almaty</span></p>
         <ul class="timeline-bullets">
-          <li>Designed <strong>10 electrical cabinet systems</strong> for building services projects from specification through to delivery</li>
-          <li><strong>European Finalist, Schneider Go Green 2021</strong> — developed a smart home energy management and sustainability project; one of the top teams from 175,000+ global participants</li>
+          <li>Designed <strong>10 electrical cabinet systems</strong> for building services projects, from specification through to delivery</li>
+          <li><strong>European Finalist, Schneider Go Green 2021</strong>, for a smart home energy management and sustainability project</li>
         </ul>
       </div>
 
       <div class="timeline-item reveal" style="transition-delay:0.23s">
-        <div class="timeline-period">Feb 2021 – Apr 2021</div>
-        <div class="timeline-role">Engineering Intern — BI International Graduate</div>
-        <div class="timeline-org">BI Group · Almaty, Kazakhstan</div>
+        <p class="timeline-period">Feb 2021 to Apr 2021</p>
+        <h3 class="timeline-role">Engineering Intern, Graduate Programme</h3>
+        <p class="timeline-org">BI Group <span class="org-badge">Almaty</span></p>
         <ul class="timeline-bullets">
-          <li>Preparation of <strong>cost estimates</strong> for construction works as part of the graduate trainee programme</li>
+          <li>Prepared <strong>cost estimates</strong> for construction works as part of the graduate trainee programme</li>
         </ul>
       </div>
 
       <div class="timeline-item reveal" style="transition-delay:0.25s">
-        <div class="timeline-period">May – Jun 2019</div>
-        <div class="timeline-role">Engineering Intern — Structural Analysis</div>
-        <div class="timeline-org">KAZGOR Design Academy · Almaty, Kazakhstan</div>
+        <p class="timeline-period">May to Jun 2019</p>
+        <h3 class="timeline-role">Engineering Intern, Structural Analysis</h3>
+        <p class="timeline-org">KAZGOR Design Academy <span class="org-badge">Almaty</span></p>
         <ul class="timeline-bullets">
-          <li>Performed structural load resistance analysis on a 750 m² five-floor building, verifying code compliance under SNIP standards — foundational grounding in building physics and structural behaviour</li>
+          <li>Performed structural load resistance analysis on a 750 m&sup2; five-storey building, verifying code compliance and building a working grounding in structural behaviour</li>
         </ul>
       </div>
 
@@ -1353,45 +1463,40 @@
 <!-- EDUCATION -->
 <section id="education">
   <div class="section-inner">
-    <div class="section-label">Education</div>
-    <h2 class="section-title">Three institutions.<br>Three scholarships. Three countries.</h2>
+    <p class="section-label">Education</p>
+    <h2 class="section-title">Three institutions.<br>One research thread.</h2>
     <div class="edu-grid">
 
       <div class="edu-card reveal">
-        <div class="edu-years">2023–25</div>
-        <div class="edu-degree">MAS · Civil Engineering</div>
-        <div class="edu-school">University of Toronto</div>
-        <div class="edu-country">🇨🇦 Canada</div>
+        <div class="edu-years">2023-2025</div>
+        <h3 class="edu-degree">MASc &middot; Civil Engineering</h3>
+        <p class="edu-school">University of Toronto</p>
         <div class="edu-details">
-          <div class="edu-detail">GPA 3.68 / 4.00</div>
-          <div class="edu-detail">Fully funded — merit scholarship + research assistantship</div>
-          <div class="edu-detail">Thesis: Material Use in Renovation, Retrofit, and Refurbishment of Existing Buildings</div>
-          <div class="edu-detail">Supervisor: Prof. Shoshanna Saxe · CSBE</div>
+          <p class="edu-detail">Thesis: material use and embodied carbon across building refurbishment scenarios</p>
+          <p class="edu-detail">Revit material take-off and cradle-to-gate LCA</p>
+          <p class="edu-detail">Supervisor: Prof. Shoshanna Saxe</p>
+          <p class="edu-detail">Centre for the Sustainable Built Environment</p>
         </div>
       </div>
 
       <div class="edu-card reveal" style="transition-delay:0.1s">
-        <div class="edu-years">2022–23</div>
-        <div class="edu-degree">MS · Building &amp; Architectural Engineering</div>
-        <div class="edu-school">Politecnico di Milano</div>
-        <div class="edu-country">🇮🇹 Italy</div>
+        <div class="edu-years">2022-2023</div>
+        <h3 class="edu-degree">Building &amp; Architectural Engineering</h3>
+        <p class="edu-school">Politecnico di Milano</p>
         <div class="edu-details">
-          <div class="edu-detail">Score 27.38 / 30</div>
-          <div class="edu-detail">Full scholarship (tuition, accommodation, monthly stipend)</div>
-          <div class="edu-detail">English-medium programme</div>
-          <div class="edu-detail">Transferred to UofT on merit</div>
+          <p class="edu-detail">One year of study on a DSU scholarship</p>
+          <p class="edu-detail">English-medium programme</p>
+          <p class="edu-detail">Continued to the MASc at the University of Toronto</p>
         </div>
       </div>
 
       <div class="edu-card reveal" style="transition-delay:0.2s">
-        <div class="edu-years">2017–21</div>
-        <div class="edu-degree">BEng · Civil Engineering</div>
-        <div class="edu-school">Nazarbayev University</div>
-        <div class="edu-country">🇰🇿 Kazakhstan</div>
+        <div class="edu-years">2017-2021</div>
+        <h3 class="edu-degree">BEng &middot; Civil Engineering</h3>
+        <p class="edu-school">Nazarbayev University</p>
         <div class="edu-details">
-          <div class="edu-detail">GPA 3.38 / 4.00</div>
-          <div class="edu-detail">Full scholarship (competitive government grant)</div>
-          <div class="edu-detail">2× peer-reviewed publications during undergraduate</div>
+          <p class="edu-detail">Two peer-reviewed papers published during undergraduate study</p>
+          <p class="edu-detail">Research on low-carbon construction materials</p>
         </div>
       </div>
 
@@ -1402,42 +1507,42 @@
 <!-- ACHIEVEMENTS -->
 <section id="achievements">
   <div class="section-inner">
-    <div class="section-label">Recognition</div>
-    <h2 class="section-title">Competitive achievements<br>&amp; industry recognition.</h2>
+    <p class="section-label">Recognition</p>
+    <h2 class="section-title">Competitions &amp;<br>industry recognition.</h2>
     <div class="achievements-row">
       <div class="achievement-card reveal">
-        <div class="achievement-icon">🏆</div>
+        <div class="achievement-icon" aria-hidden="true">&#127942;</div>
         <div>
-          <div class="achievement-title">Winner — Climate Impacts Hackathon 2024</div>
-          <div class="achievement-desc">Led Python + QGIS data pipeline to identify optimal urban cooling centre locations for Toronto, applying climate downscaling, heat hazard modelling, and vulnerability assessment. First place.</div>
+          <h3 class="achievement-title">Winner, Climate Impacts Hackathon 2024</h3>
+          <p class="achievement-desc">Led the Python and QGIS pipeline for urban cooling centre siting in Toronto, applying climate downscaling, heat hazard modelling and vulnerability assessment. First place.</p>
         </div>
       </div>
       <div class="achievement-card reveal" style="transition-delay:0.1s">
-        <div class="achievement-icon">🌍</div>
+        <div class="achievement-icon" aria-hidden="true">&#127757;</div>
         <div>
-          <div class="achievement-title">European Finalist — Schneider Go Green 2021</div>
-          <div class="achievement-desc">Advanced to European finalist stage in a global sustainability competition with 175,000+ participants — for a smart home energy management and sustainability project.</div>
+          <h3 class="achievement-title">European Finalist, Schneider Go Green 2021</h3>
+          <p class="achievement-desc">Advanced to the European finalist stage of a global sustainability competition with a smart home energy management project.</p>
         </div>
       </div>
       <div class="achievement-card reveal" style="transition-delay:0.2s">
-        <div class="achievement-icon">🌉</div>
+        <div class="achievement-icon" aria-hidden="true">&#128739;</div>
         <div>
-          <div class="achievement-title">Finalist — BRICO Nordic Steel Bridge Competition 2020</div>
-          <div class="achievement-desc">Designed a sustainable steel bridge as part of an international student engineering competition, applying structural analysis and sustainable design principles.</div>
+          <h3 class="achievement-title">Finalist, BRICO Nordic Steel Bridge Competition 2020</h3>
+          <p class="achievement-desc">Designed a steel bridge for an international student engineering competition, applying structural analysis and sustainable design principles.</p>
         </div>
       </div>
       <div class="achievement-card reveal" style="transition-delay:0.3s">
-        <div class="achievement-icon">🌐</div>
+        <div class="achievement-icon" aria-hidden="true">&#127760;</div>
         <div>
-          <div class="achievement-title">IET Present Around the World — EMEA Regional Finalist 2019</div>
-          <div class="achievement-desc">Winner of the Local Final in Astana, Kazakhstan; advanced to the EMEA Regional Final in Athens, Greece (Institution of Engineering and Technology).</div>
+          <h3 class="achievement-title">IET Present Around the World, EMEA Regional Finalist 2019</h3>
+          <p class="achievement-desc">Won the local final and advanced to the EMEA regional final in Athens, run by the Institution of Engineering and Technology.</p>
         </div>
       </div>
       <div class="achievement-card reveal" style="transition-delay:0.4s">
-        <div class="achievement-icon">🏗</div>
+        <div class="achievement-icon" aria-hidden="true">&#127959;</div>
         <div>
-          <div class="achievement-title">Participant — Sustainable Buildings Challenge 2024</div>
-          <div class="achievement-desc">Better Building Boot Camp, Sustainable Buildings Canada (May 2024). Collaborative applied challenge on building performance and sustainability strategy.</div>
+          <h3 class="achievement-title">Sustainable Buildings Challenge 2024</h3>
+          <p class="achievement-desc">Better Building Boot Camp with Sustainable Buildings Canada, an applied team challenge on building performance and sustainability strategy.</p>
         </div>
       </div>
     </div>
@@ -1447,62 +1552,57 @@
 <!-- BEYOND WORK -->
 <section id="beyond" style="background:var(--bg)">
   <div class="section-inner">
-    <div class="section-label">Beyond Work</div>
+    <p class="section-label">Beyond Work</p>
     <h2 class="section-title">A bit about<br>who I actually am.</h2>
     <div class="beyond-grid reveal">
 
       <div class="beyond-card">
-        <div class="beyond-icon">🎾</div>
-        <div class="beyond-title">Tennis</div>
-        <div class="beyond-desc">My favourite way to reset. Competitive by nature — on and off the court.</div>
+        <div class="beyond-icon" aria-hidden="true">&#127934;</div>
+        <h3 class="beyond-title">Tennis</h3>
+        <p class="beyond-desc">My favourite way to reset. Competitive by nature, on and off the court.</p>
       </div>
 
       <div class="beyond-card">
-        <div class="beyond-icon">🏔</div>
-        <div class="beyond-title">Mountains & Hiking</div>
-        <div class="beyond-desc">Grew up near the Tian Shan range in Kazakhstan. Mountains feel like home.</div>
+        <div class="beyond-icon" aria-hidden="true">&#127956;</div>
+        <h3 class="beyond-title">Mountains &amp; Hiking</h3>
+        <p class="beyond-desc">I grew up close to the mountains and still head for them whenever the season allows.</p>
       </div>
 
       <div class="beyond-card">
-        <div class="beyond-icon">🎹</div>
-        <div class="beyond-title">Piano</div>
-        <div class="beyond-desc">Been playing since childhood. Mostly classical — it keeps me grounded.</div>
+        <div class="beyond-icon" aria-hidden="true">&#127929;</div>
+        <h3 class="beyond-title">Piano</h3>
+        <p class="beyond-desc">Playing since childhood, mostly classical. It keeps me grounded.</p>
       </div>
 
       <div class="beyond-card">
-        <div class="beyond-icon">✏️</div>
-        <div class="beyond-title">Drawing</div>
-        <div class="beyond-desc">Sketching by hand — architecture, portraits, whatever catches my eye.</div>
+        <div class="beyond-icon" aria-hidden="true">&#9749;</div>
+        <h3 class="beyond-title">Coffee</h3>
+        <p class="beyond-desc">Serious about it. The year in Italy raised the bar and I have been chasing that standard ever since.</p>
       </div>
 
       <div class="beyond-card">
-        <div class="beyond-icon">☕</div>
-        <div class="beyond-title">Coffee</div>
-        <div class="beyond-desc">Serious about it. Italy was a revelation — still chasing that espresso standard everywhere else.</div>
+        <div class="beyond-icon" aria-hidden="true">&#127963;</div>
+        <h3 class="beyond-title">Architecture &amp; Design</h3>
+        <p class="beyond-desc">Hard not to care about it after Milan. I notice buildings everywhere: how they age, how people use them.</p>
       </div>
 
       <div class="beyond-card">
-        <div class="beyond-icon">🏛</div>
-        <div class="beyond-title">Architecture & Design</div>
-        <div class="beyond-desc">Hard not to care about it after Polimi. I notice buildings everywhere I go — how they age, how people use them.</div>
+        <div class="beyond-icon" aria-hidden="true">&#129302;</div>
+        <h3 class="beyond-title">AI &amp; 3D Printing</h3>
+        <p class="beyond-desc">Curious about how both change construction and design workflows. I follow it closely and test the tools myself.</p>
       </div>
 
       <div class="beyond-card">
-        <div class="beyond-icon">🤖</div>
-        <div class="beyond-title">AI & 3D Printing</div>
-        <div class="beyond-desc">Genuinely curious how these change construction and design workflows. Following it closely.</div>
-      </div>
-
-      <div class="beyond-card">
-        <div class="beyond-icon">📈</div>
-        <div class="beyond-title">Markets & Innovation</div>
-        <div class="beyond-desc">Learning about financial markets and how capital flows into green tech. The business side of sustainability matters.</div>
+        <div class="beyond-icon" aria-hidden="true">&#128200;</div>
+        <h3 class="beyond-title">Markets &amp; Innovation</h3>
+        <p class="beyond-desc">Learning how capital flows into green technology. The business side of sustainability decides what actually gets built.</p>
       </div>
 
     </div>
 
     <p class="beyond-closing reveal" style="transition-delay:0.15s">
-      I've lived in three countries and moved across continents twice for school — so adapting quickly, building new circles, and finding comfort in unfamiliar places feels pretty natural to me by now.
+      I have studied in three countries and moved twice for research, so settling into a new city and a new
+      team is familiar territory rather than a hurdle.
     </p>
   </div>
 </section>
@@ -1510,22 +1610,26 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-inner">
-    <div class="section-label" style="justify-content:center">Contact</div>
-    <div class="contact-heading">Let's build a<br><span style="color:var(--accent)">net-zero future</span> together.</div>
-    <p class="contact-sub">Open to roles in building decarbonisation, LCA, embodied carbon, building energy modelling, building physics, and sustainability consulting.</p>
+    <p class="section-label" style="justify-content:center">Contact</p>
+    <p class="contact-heading">Currently open to work in<br><span style="color:var(--accent)">the Netherlands</span> and <span style="color:var(--accent)">Northern Italy</span>.</p>
+    <p class="contact-sub">Relocating to Amsterdam, and open to roles across Northern Italy, where I studied at Politecnico di Milano. Work in embodied carbon and LCA, building performance, computational and parametric design, and BIM data workflows.</p>
     <div class="contact-links">
       <a href="mailto:zere.bekzhanova@alumni.utoronto.ca" class="contact-link">
-        <span class="contact-icon">✉</span> zere.bekzhanova@alumni.utoronto.ca
+        <span class="contact-icon" aria-hidden="true">&#9993;</span> zere.bekzhanova@alumni.utoronto.ca
       </a>
-      <a href="https://www.linkedin.com/in/zere-bekzhanova/" target="_blank" class="contact-link">
-        <span class="contact-icon">💼</span> linkedin.com/in/zere-bekzhanova
+      <a href="https://www.linkedin.com/in/zere-bekzhanova/" target="_blank" rel="noopener noreferrer" class="contact-link">
+        <span class="contact-icon" aria-hidden="true">&#128188;</span> linkedin.com/in/zere-bekzhanova
+      </a>
+      <a href="Zere_Bekzhanova_CV.pdf" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-icon" aria-hidden="true">&#128196;</span> Download CV (PDF)
       </a>
     </div>
   </div>
 </section>
+</main>
 
 <footer>
-  <p>© 2026 <span>Zere Bekzhanova</span> · Building Decarbonisation & LCA Specialist</p>
+  <p>&copy; 2026 <span>Zere Bekzhanova</span> &middot; Sustainability &amp; Building Engineer &middot; Computational Designer</p>
 </footer>
 
 <script>
@@ -1535,11 +1639,15 @@
     const btn = document.getElementById('hamburger');
     menu.classList.toggle('open');
     btn.classList.toggle('open');
-    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    const open = menu.classList.contains('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
   }
   function closeMenu() {
     document.getElementById('mobileNav').classList.remove('open');
-    document.getElementById('hamburger').classList.remove('open');
+    const btn = document.getElementById('hamburger');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
   // Close on escape key
@@ -1604,13 +1712,21 @@
     }
   };
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(p => { p.update(); p.draw(); });
     if (!isMobile) drawConnections();
     requestAnimationFrame(animate);
   };
-  animate();
+  if (reduceMotion) {
+    // draw one static frame instead of animating
+    particles.forEach(p => p.draw());
+    if (!isMobile) drawConnections();
+  } else {
+    animate();
+  }
 
   // ─── REVEAL: show everything visible in viewport on load + on scroll ───
   // Use threshold 0 so ANY pixel entering triggers it.
@@ -1643,7 +1759,7 @@
     const update = (now) => {
       const progress = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(eased * target) + suffix;
+      el.textContent = Math.round(eased * target).toLocaleString('en-US') + suffix;
       if (progress < 1) requestAnimationFrame(update);
     };
     requestAnimationFrame(update);
@@ -1666,41 +1782,19 @@
   // Safety net for counters too
   setTimeout(() => {
     document.querySelectorAll('.stat-number[data-target]').forEach(el => {
-      if (el.textContent === '0') animateCounter(el);
+      if (el.textContent.replace(/[^0-9]/g, '') === '0') animateCounter(el);
     });
   }, 1000);
-
-  // ─── SKILL BARS ───
-  const skillObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.skill-fill').forEach(bar => {
-          bar.style.width = bar.dataset.width + '%';
-        });
-        skillObserver.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0, rootMargin: '0px 0px -20px 0px' });
-
-  document.querySelectorAll('.skill-category').forEach(el => skillObserver.observe(el));
-
-  // Safety net for skill bars
-  setTimeout(() => {
-    document.querySelectorAll('.skill-fill').forEach(bar => {
-      if (!bar.style.width) bar.style.width = bar.dataset.width + '%';
-    });
-  }, 2000);
 
   // ─── NAV SHRINK ON SCROLL ───
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
-    const isMob = window.innerWidth < 768;
+    const isMob = window.innerWidth <= 1000;
     const pad = window.scrollY > 60
       ? (isMob ? '0.6rem 1.25rem' : '0.75rem 3rem')
       : (isMob ? '1rem 1.25rem'  : '1.25rem 3rem');
     nav.style.padding = pad;
   }, { passive: true });
-
 </script>
 </body>
 </html>
